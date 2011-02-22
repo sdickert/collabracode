@@ -1,0 +1,49 @@
+D1
+Show the mountain
+Show sorting work to be done today
+Tools
+Types (including functions)
+Syntax
+Control Flow
+Scoping
+Lab: Write sort function
+Demo: Hook up each student's functions to visual sort viewer and show it working on a per-iteration basis
+Have students store all work at end of day on github
+
+D2
+Show display headline work to be done today
+Data Structures -- arrays, objects
+when to use/not to use for...in... syntax
+JSON
+Lab: Display headlines from feed at http://daveriver.scripting.com/index.json
+Lab: Run your code through JSLint
+OOP Discussion?
+- Prototype inheritance vs. traditional inheritance
+
+D3
+Show Calculator work to be done today
+DOM selectors
+- and use in CSS stylesheets
+Lab: Change all the bullet points in a doc to alternate red, white, and blue with gold background
+Event Handlers -- the right way
+Lab: Calculator tutorial students write event handlers
+Lab: Display headlines from feed at http://daveriver.scripting.com/index.json and on headline click display/hide details
+Discussion on fallback if no javascript
+
+D4
+DOM Traversing
+Lab: Pick out all the text that is italicized in a page
+DOM Manipulation
+Lab: Write a script to flatten any page (including tables)...make it a bookmarklet
+
+D5
+Using JQuery for DOM Selectors, DOM Traversing, DOM Manipulation
+Demo: Some useful demo
+Lab: Something with JQuery
+HTTP, REST
+Cookies and security/caveats
+Lab: Start writing shopping cart
+
+D6
+Closures
+AJAX
