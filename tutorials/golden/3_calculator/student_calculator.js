@@ -1,7 +1,7 @@
 
 function handleCalculatorButtonPressed(evt) {
   var elem = evt.target;
-  var text = elem.innerText;
+  var text = getInnerText(elem);
   var f = calculatorFunctions[text];
   if(!f) {
     alert("Unexpected Button pressed for text " + text);
@@ -101,7 +101,7 @@ function numberPressed(text) {
 }
 
 function decimalPointPressed() {
-  if(getDisplayElem().innerText.indexOf(".") == -1) {
+  if(getInnerText(getDisplayElem()).indexOf(".") == -1) {
     setDisplayAsText(getDisplayAsText() + ".");
   }
 }

@@ -10,6 +10,21 @@ var currentOperation = OPERATION_NONE;
 var memoryValue = 0;
 var clearOnNextEntry = true;
 
+function getInnerText(elem) {
+  if(typeof elem.innerText == "undefined") {
+    return elem.textContent;
+  }
+  return elem.innerText;
+}
+
+function setInnerText(elem, value) {
+  if(typeof elem.innerText == "undefined") {
+    elem.textContent = value;
+  } else {
+    elem.innerText = value;
+  }
+}
+
 function addEvent(obj, evType, fn) {
   // taken from http://www.onlinetools.org/articles/unobtrusivejavascript/chapter4.html
   if (obj.addEventListener) {
@@ -28,20 +43,21 @@ function getDisplayElem() {
 }
 
 function setDisplayAsText(value) {
-  getDisplayElem().innerText = value;
+  setInnerText(getDisplayElem(), value);
 }
 
 function setDisplayAsFloat(value) {
-  getDisplayElem().innerText = new String(value);
+  setInnerText(getDisplayElem(), new String(value));
 }
 
 function getDisplayAsText() {
-  return getDisplayElem().innerText;
+  return getInnerText(getDisplayElem());
 }
 
 function getDisplayAsFloat() {
   return parseFloat(getDisplayAsText());
 }
+
 
 var calculatorFunctions = {
   "MC" : memoryClear,
@@ -69,11 +85,23 @@ var calculatorFunctions = {
   "=" : equalsPressed
 }
 
+function handleCalculatorButtonPressed(evt) {
+  var elem = evt.target;
+  var text = getInnerText(elem);
+  var f = calculatorFunctions[text];
+  if(!f) {
+    alert("Unexpected Button pressed for text " + text);
+  } else {
+    f(text);
+  }
+  return false;
+}
+
 function attachButtonEvents() {
   var elems = document.getElementsByClassName("button");
   for (var i=0; i<elems.length; i++) {
     var elem = elems[i];
-    if(elem.innerText) {
+    if(getInnerText(elem)) {
       addEvent(elem, "click", handleCalculatorButtonPressed)
     }
   }

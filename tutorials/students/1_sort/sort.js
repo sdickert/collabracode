@@ -12,6 +12,21 @@ function addEvent(obj, evType, fn) {
   }
 }
 
+function getInnerText(elem) {
+  if(typeof elem.innerText == "undefined") {
+    return elem.textContent;
+  }
+  return elem.innerText;
+}
+
+function setInnerText(elem, value) {
+  if(typeof elem.innerText == "undefined") {
+    elem.textContent = value;
+  } else {
+    elem.innerText = value;
+  }
+}
+
 function runSortOnce() {
   if(!itersort) {
     return true;
@@ -23,7 +38,7 @@ function runSortOnce() {
   var arr = [];
   var arr2 = [];
   for(var i=0; i<cells.length; i++) {
-    var value = parseInt(cells[i].innerText);
+    var value = parseInt(getInnerText(cells[i]));
     arr.push(value);
     arr2.push(value);
   }
@@ -45,7 +60,7 @@ function runSortOnce() {
   for(var i=0; i<outarr.length; i++) {
     var newCell = document.createElement("td");
     newCell.className = "element";
-    newCell.innerText = new String(outarr[i]);
+    setInnerText(newCell, new String(outarr[i]));
     newRow.appendChild(newCell);
   }
   tbody.appendChild(newRow);
