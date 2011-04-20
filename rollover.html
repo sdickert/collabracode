@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>rollover : sample</title>
+<style>
+a#myButton {display:block; background:#000; width:200px; padding:20px; font-family:Arial, Helvetica, sans-serif; font-size:12px; text-decoration:none; color:#000; border:#000 solid 1px;}
+</style>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.js"></script>
+<script>
+///button color info
+var buttonNormalColor = '#7e9469';
+var buttonHoverColor = '#97aed0';
+var buttonClickColor = '#5c7395';
+
+///button rollover
+function buttonRollOver(){
+	$(this).stop().css({'background-color':buttonHoverColor});
+}
+
+///button rollout
+function buttonRollOut(){
+	$(this).css({'background-color':buttonNormalColor});
+}
+
+
+function clickButtonState(){
+	$(this).css({'background-color':buttonClickColor});
+}
+
+/////////////////////////////
+
+$(document).ready(function(){
+	
+	////apply normal color
+	$('a#myButton').css({'background':buttonNormalColor});
+	
+	/////anchor link Hover States
+	$('a#myButton').hover(buttonRollOver, buttonRollOut);
+	
+	///anchor link Click State
+	$('a#myButton').click(clickButtonState);
+	
+});
+</script>
+</head>
+<body>
+
+	<a id="myButton" href="#">my button</a>
+
+</body>
+</html>
