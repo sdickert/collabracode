@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Welcome to Javascript/JQuery</title>
+  </head>
+  <body onload="helloWorld();">
+    <h1>Welcome to Javascript/JQuery</h1>
+    <div id="msg" class="summary"></div>
+    <script type="text/javascript">
+      function addText(str) {
+        var obj = document.createTextNode(str);
+        document.getElementById("msg").appendChild(obj);
+      }
+      function helloWorld() {
+        var message = "Hello Attendees";
+        addText(message);
+      }
+      document.write("Hello New York City<br/>");
+    </script>
+  </body>
+</html>
