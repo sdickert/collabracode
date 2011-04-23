@@ -10,6 +10,14 @@
   </head>
   <body>
     <h1>Sorting</h1>
+    <p>
+      <label for="sort_algorithm">Sorting Algorithm</label>
+      <select id="sort_algorithm" name="sort_algorithm">
+        <option value="bubblesort">Bubble Sort</option>
+        <option value="insertionsort">Insertion Sort</option>
+        <option value="radixsort">Radix Sort</option>
+      </select>
+    </p>
     <div id="run-sort-button">Click to Run Sort</div>
     <table id="sort-table">
       <tbody>
@@ -30,11 +38,20 @@
     </table>
     <div>
       <div>
-        To make this work, you must create a javascript file with at least the following functions:
+        To make this work, open up <code>sort.js</code> and fill in the following functions:
       </div>
       <ul>
-        <li><b>itersort</b> -- takes in an array and outputs an array</li>
+        <li><b>itersort_bubblesort</b> -- Implement algorithm specified at <a target="_blank" href="http://en.wikipedia.org/wiki/Bubble_sort">http://en.wikipedia.org/wiki/Bubble_sort</a></li>
+        <li><b>itersort_insertionsort</b> -- Implement algorithm specified at <a target="_blank" href="http://en.wikipedia.org/wiki/Insertion_sort">http://en.wikipedia.org/wiki/Insertion_sort</a></li>
+        <li><b>itersort_radixsort</b> -- Implement algorithm specified at <a target="_blank" href="http://en.wikipedia.org/wiki/Radix_sort">http://en.wikipedia.org/wiki/Radix_sort</a></li>
       </ul>
+      <h4>Testing</h4>
+      <p>
+        If on Linux or Mac, go to git base directory and run <code>python -m SimpleHTTPServer</code>.<br/>
+        Update <code>sort_test.html</code> by filling in the test cases.<br/>
+        Go to <a target="_blank" href="http://localhost:8000/jsunit/testRunner.html">http://localhost:8000/jsunit/testRunner.html</a><br/>
+        Run the test at <a target="_blank" href="http://localhost:8000/tutorials/students/2_sort/sort_test.html">http://localhost:8000/tutorials/students/2_sort/sort_test.html</a>
+      </p>
     </div>
   </body>
 </html>

@@ -1,34 +1,19 @@
 
-function addEvent(obj, evType, fn) {
-  // taken from http://www.onlinetools.org/articles/unobtrusivejavascript/chapter4.html
-  if (obj.addEventListener) {
-    obj.addEventListener(evType, fn, false); 
-    return true; 
-  } else if (obj.attachEvent) {
-    var r = obj.attachEvent("on"+evType, fn); 
-    return r; 
-  } else {
-    return false; 
+function runSortOnce(iteration) {
+  var selection = document.getElementById("sort_algorithm");
+  if(!selection) {
+    console.log("could not find selection");
+    return true;
   }
-}
-
-function getInnerText(elem) {
-  if(typeof elem.innerText == "undefined") {
-    return elem.textContent;
+  var sorttype = selection.item(selection.selectedIndex).value;
+  if(!sorttype) {
+    console.log("no sort type specified");
+    return true;
   }
-  return elem.innerText;
-}
-
-function setInnerText(elem, value) {
-  if(typeof elem.innerText == "undefined") {
-    elem.textContent = value;
-  } else {
-    elem.innerText = value;
-  }
-}
-
-function runSortOnce() {
-  if(!itersort) {
+  var itersortfuncname = "itersort_" + sorttype;
+  var itersortfunc = window[itersortfuncname];
+  if(!itersortfunc) {
+    console.log("no itersort function named ", itersortfuncname);
     return true;
   }
   var table = document.getElementById("sort-table");
@@ -42,19 +27,27 @@ function runSortOnce() {
     arr.push(value);
     arr2.push(value);
   }
-  var outarr = itersort(arr);
-  if(outarr.length == arr2.length) {
-    var isSame = true;
-    for(var i=0; i<arr2.length; i++) {
-      if(outarr[i] != arr2[i]) {
-        isSame = false;
-        break;
-      }
-    }
-    if(isSame) {
-      return true;
-    }
+  var maxiterations = 0;
+  switch(sorttype) {
+    case "bubblesort":
+      maxiterations = arr.length - 1;
+      break;
+    case "insertionsort":
+      maxiterations = arr.length - 1;
+      break;
+    case "radixsort":
+      maxiterations = radixsort_numPasses(arr, 10);
+      break;
+    default:
+      maxiterations = -1;
+      break;
   }
+  console.log("running through iteration ", iteration, " out of ", maxiterations, " for sort ", sorttype);
+  if(iteration >= maxiterations) {
+    console.log("no more iterations");
+    return true;
+  }
+  var outarr = itersortfunc(arr, iteration);
   var newRow = document.createElement("tr");
   newRow.className = "attempt";
   for(var i=0; i<outarr.length; i++) {
@@ -64,11 +57,16 @@ function runSortOnce() {
     newRow.appendChild(newCell);
   }
   tbody.appendChild(newRow);
+  if(iteration + 1 >= maxiterations) {
+    console.log("no more iterations");
+    return true;
+  }
   return false;
 }
 
 function runSort() {
-  while(!runSortOnce()) {};
+  for(var i=0; !runSortOnce(i); i++) {}
+  console.log("done");
 }
 
 function attachButtonEvents() {

@@ -26,3 +26,11 @@ function setInnerText(elem, value) {
     elem.innerText = value;
   }
 }
+
+function duplicateArray(arr) {
+  var newArr = [];
+  for(var i=0, arrSize=arr.length; i<arrSize; i++) {
+    newArr.push(arr[i]);
+  }
+  return newArr;
+}

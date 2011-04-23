@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Test Page for Sorting</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" type="text/css" href="../../../jsunit/css/jsUnitStyle.css">
+    <script type="text/javascript" src="../../../jsunit/app/jsUnitCore.js"></script>
+    <script type="text/javascript" src="../../../jsunit/app/jsUnitTestManager.js"></script>
+    <script type="text/javascript" src="../../../jsunit/app/BaseUiManager.js"></script>
+    <script type="text/javascript" src="../../../jsunit/app/ClassicUiManager.js"></script>
+    <script type="text/javascript" src="../../../jsunit/app/ModernUiManager.js"></script>
+    <script type="text/javascript" src="../../../jsunit/app/jsUnitParams.js"></script>
+    <script type="text/javascript" src="../../../jsunit/app/jsUnitTracer.js"></script>
+    <script type="text/javascript" src="util.js"></script>
+    <script type="text/javascript" src="student_sort.js"></script>
+    
+    <script type="text/javascript">
+      function generateStandardArray() {
+        return [104, 17, 9, 15, 24, 73, 105, 87, 47, 42, 1];
+      }
+      function testValidBubbleSort() {
+        var iterations = [
+          [17, 9, 15, 24, 73, 104, 87, 47, 42, 1, 105],
+          [9, 15, 17, 24, 73, 87, 47, 42, 1, 104, 105],
+          [9, 15, 17, 24, 73, 47, 42, 1, 87, 104, 105],
+          [9, 15, 17, 24, 47, 42, 1, 73, 87, 104, 105],
+          [9, 15, 17, 24, 42, 1, 47, 73, 87, 104, 105],
+          [9, 15, 17, 24, 1, 42, 47, 73, 87, 104, 105],
+          [9, 15, 17, 1, 24, 42, 47, 73, 87, 104, 105],
+          [9, 15, 1, 17, 24, 42, 47, 73, 87, 104, 105],
+          [9, 1, 15, 17, 24, 42, 47, 73, 87, 104, 105],
+          [1, 9, 15, 17, 24, 42, 47, 73, 87, 104, 105]
+        ];
+        var arr = generateStandardArray();
+        for(var i=0, iterationsSize=iterations.length; i<iterationsSize; i++) {
+          var iteration = iterations[i];
+          arr = itersort_bubblesort(arr, i);
+          assertArrayEquals(iteration, arr);
+        }
+      }
+      function testValidInsertionSort() {
+        var iterations = [
+          [17, 104, 9, 15, 24, 73, 105, 87, 47, 42, 1],
+          [9, 17, 104, 15, 24, 73, 105, 87, 47, 42, 1],
+          [9, 15, 17, 104, 24, 73, 105, 87, 47, 42, 1],
+          [9, 15, 17, 24, 104, 73, 105, 87, 47, 42, 1],
+          [9, 15, 17, 24, 73, 104, 105, 87, 47, 42, 1],
+          [9, 15, 17, 24, 73, 104, 105, 87, 47, 42, 1],
+          [9, 15, 17, 24, 73, 87, 104, 105, 47, 42, 1],
+          [9, 15, 17, 24, 47, 73, 87, 104, 105, 42, 1],
+          [9, 15, 17, 24, 42, 47, 73, 87, 104, 105, 1],
+          [1, 9, 15, 17, 24, 42, 47, 73, 87, 104, 105]
+        ];
+        var arr = generateStandardArray();
+        for(var i=0, iterationsSize=iterations.length; i<iterationsSize; i++) {
+          var iteration = iterations[i];
+          arr = itersort_insertionsort(arr, i);
+          assertArrayEquals(iteration, arr);
+        }
+      }
+      function testValidRadixSort() {
+        var iterations = [
+          [1, 42, 73, 104, 24, 15, 105, 17, 87, 47, 9],
+          [1, 104, 105, 9, 15, 17, 24, 42, 47, 73, 87],
+          [1, 9, 15, 17, 24, 42, 47, 73, 87, 104, 105]
+        ];
+        var arr = generateStandardArray();
+        for(var i=0, iterationsSize=iterations.length; i<iterationsSize; i++) {
+          var iteration = iterations[i];
+          arr = itersort_radixsort(arr, i);
+          assertArrayEquals(iteration, arr);
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <h1>Sorting Tests</h1>
+    <noscript>Sorry, JsUnit requires JavaScript.</noscript>
+  </body>
+</html>
