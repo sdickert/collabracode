@@ -28,7 +28,7 @@ var riverCallback = {
         article.className = "article";
         article.appendChild(atitle);
         var expandContract = document.createElement("span");
-        expandContract.innerText = "+/-";
+        setInnerText(expandContract, "+/-");
         addEvent(expandContract, "click", toggleVisibilityWrapper(adesc.id));
         atitle.appendChild(expandContract);
         atitle.appendChild(anchor);

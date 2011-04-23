@@ -4,7 +4,7 @@ function log(s) {
   var l = document.getElementById("log");
   var li = document.createElement("div");
   li.className = "log-item";
-  li.innerText += String(s);
+  setInnerText(li, String(s));
   l.appendChild(li);
 }
 
