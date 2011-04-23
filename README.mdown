@@ -1,0 +1,19 @@
+# collabraCode(); Forking Instructions
+
+In setting up for the program, you will be instructed to fork this repository and work on your own repository. Instructions for setting this up while also tracking the main branch follows.
+
+1. **Fork**. This is the easiest part. Log into [github](http://github.com) and navigate to the main [`collabraCode();` repository](https://github.com/sdickert/collabracode). Now click the *Fork* button.
+
+   ![fork button](http://i.imgur.com/WRTu6.png).
+   
+2. After you have forked your repository you need to clone it. 
+
+        git clone [Your Fork's URL]
+
+3. Now you have a local copy, tracking your fork of the mainline repository. This is great! Except... you need to also track the original repository for updates and changes. The easiest way to do this is add a second remote repository to your local copy.
+
+        git remote add cc git@github.com:sdickert/collabracode.git
+        git fetch cc
+        git checkout -b mainline cc/master
+        
+
