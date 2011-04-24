@@ -6,6 +6,9 @@ function log(s) {
   li.className = "log-item";
   setInnerText(li, String(s));
   l.appendChild(li);
+  if(console && console.log) {
+    console.log(s);
+  }
 }
 
 function loadRemoteRSSHandler(evt) {
