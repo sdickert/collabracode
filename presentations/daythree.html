@@ -1,0 +1,1063 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+<!--
+  What is jQuery?
+  by adam j. sontag & Josh Kehn
+  WTFPL License
+
+  If you want the cool kid fonts for this preso:
+  http://www.fontsquirrel.com/fontfacedemo/ChunkFive
+  http://www.fontsquirrel.com/fontfacedemo/CartoGothic-Std
+
+  This all refers to the Presentation slides or whatever.
+  vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+
+  Copyright 2010 Google Inc.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+  Original slides: Marcin Wichary (mwichary@google.com)
+  Modifications: Ernest Delgado (ernestd@google.com)
+                 Alex Russell (slightlyoff@chromium.org
+                 Brad Neuberg
+-->
+<html>
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge;chrome=1" />
+    <title>Collabracode JS Day 2</title>
+    <link rel="shortcut icon" href="/images/favicon.ico" />
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon" /> 
+    
+    <link href="css/fonts.css" rel="stylesheet" type="text/css" />
+    <link href="css/main.css" rel="stylesheet" type="text/css" />
+    <link href="css/syntax.css" rel="stylesheet" type="text/css" />
+    <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.6/themes/ui-lightness/jquery-ui.css" rel="stylesheet" type="text/css" />
+
+  </head>
+  <body>
+    <div class="presentation">
+      <div id="presentation-counter"></div>
+      <div class="slides">
+        <div class="slide" id="intro">
+          <div class="bg">
+            <section class="middle landing">
+              <h1>Scoping, DOM Overview, JSON, OOP</h1>
+              <h4>Day 2</h4>
+              <h4>by <code>collabraCode('js');</code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h4>
+            </section>
+          </div>
+        </div>
+
+        <div class="slide">
+          <header>
+            <h1>Today&#39;s Agenda</h1>
+          </header>
+          <section class="text">
+            <h2>Today&#39;s Objectives</h2>
+            <ul>
+              <li>Understand scoping</li>
+              <li>Present info from a JSON or JSONP backend</li>
+              <li>Manipulate the DOM</li>
+              <li>Read object-oriented JavaScript</li>
+            </ul>
+            <h2>Topics</h2>
+            <ul>
+              <li>Scoping</li>
+              <li>DOM Overview</li>
+              <li>JSONP vs. JSON</li>
+              <li>OOP</li>
+            </ul>
+            <h2>Lab</h2>
+            <ul>
+              <li>Pull headlines from an external source and display on your site</li>
+              <li>Shopping Cart Item OOP</li>
+            </ul>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>Quick Test &#8212; Scoping</h1>
+          </header>
+          <section class="text muchSmallerCode">
+            <pre class="brush: js; toolbar: false;">
+              var a = "alpha";
+              var b = 1 + 2;
+              var c = "gamma";
+              
+              function mytest(b) {
+                a += 10;
+                b += 10;
+              }
+              mytest(b);
+              mytest(c);
+              
+              // a = ?
+              // b = ?
+              // c = ?
+            </pre>
+            <p>
+              <code><a target="_blank" href="daythree/scoping.js">presentations/daythree/scoping.js</a></code>
+            </p>
+            <div class="tips">Using var creates the variable at the innermost scope</div>
+            <div>Braces <strong>DO NOT</strong> create a new inner scope</div>
+            <div><strong>ONLY</strong> functions create a new inner scope</div>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>Quick Test &#8212; Scoping</h1>
+          </header>
+          <section class="text muchSmallerCode">
+            <pre class="brush: js; toolbar: false;">
+              var a = "alpha";
+              var b = 1 + 2;
+              var c = "gamma";
+              
+              function mytest(b) {
+                a += 10;
+                b += 10;
+              }
+              mytest(b);
+              mytest(c);
+              
+              // a = "alpha1010"
+              // b = 3
+              // c = "gamma"
+            </pre>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>DOM (Document Object Model)</h1>
+          </header>
+          <section class="text">
+            <dl>
+              <dt>document</dt>
+              <dd>Top-most element of a DOM, tree-structured</dd>
+              <dd>Contains the root node where everything starts</dd>
+              <dd>Used to create other elements</dd>
+              <dd>Used to scan for elements</dd>
+            </dl>
+            <dl>
+              <dt>Node</dt>
+              <dd>Text Node, Comment Node, Element Node, Attribute Node</dd>
+            </dl>
+            <dl>
+              <dt>Element</dt>
+              <dd>Created by every opening tag in an HTML document</dd>
+              <dd>May contain other elements as child nodes</dd>
+              <dd>May contain text nodes as child nodes</dd>
+              <dd>May have sibling elements</dd>
+            </dl>
+            <br/>
+            <p>
+              <a target="_blank" href="../tutorials/golden/3_river_of_news/river.html">Upcoming Lab Demo</a>
+            </p>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>DOM &#8212; Functions for Lab</h1>
+          </header>
+          <section class="text">
+            <dl>
+              <dt>document.getElementById("id")</dt>
+              <dd>returns first Element with specified id attribute otherwise null</dd>
+            </dl>
+            <dl>
+              <dt>document.createElement("div")</dt>
+              <dd>returns a new "div" Element with no children and no parent</dd>
+            </dl>
+            <dl>
+              <dt>document.createTextNode("some HTML unescaped text")</dt>
+              <dd>returns a text Node that can be added to an Element</dd>
+            </dl>
+            <dl>
+              <dt><code>element</code>.appendChild(childNode)</dt>
+              <dd>adds aNode as a child</dd>
+            </dl>
+            <dl>
+              <dt><code>element</code>.getAttribute(attributeName)</dt>
+              <dd>Returns attribute value as string or null if not found</dd>
+            </dl>
+            <dl>
+              <dt><code>element</code>.setAttribute(attributeName, attributeValue)</dt>
+              <dd>Sets the attribute value as a string for attributeName</dd>
+            </dl>
+            <br/>
+            <ul>
+              <li><a target="_blank" href="https://developer.mozilla.org/en/DOM/document">https://developer.mozilla.org/en/DOM/document</a></li>
+              <li><a target="_blank" href="https://developer.mozilla.org/en/DOM/node">https://developer.mozilla.org/en/DOM/node</a></li>
+              <li><a target="_blank" href="https://developer.mozilla.org/en/DOM/element">https://developer.mozilla.org/en/DOM/element</a></li>
+            </ul>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>DOM &#8212; Properties for Lab</h1>
+          </header>
+          <section class="text">
+            <dl>
+              <dt><code>element</code>.textContent</dt>
+              <dd>all text in Element through leaf nodes</dd>
+            </dl>
+            <dl>
+              <dt><code>element</code>.innerHTML</dt>
+              <dd>all child Elements through leaf nodes as HTML text</dd>
+            </dl>
+            <dl>
+              <dt><code>element</code>.className</dt>
+              <dd>string containing "class" attribute for this Element</dd>
+            </dl>
+            <dl>
+              <dt><code>node</code>.childNodes[]</dt>
+              <dd>Access individual child nodes, immutable</dd>
+            </dl>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>Quick Test &#8212; DOM Basics</h1>
+          </header>
+          <section class="text muchSmallerCode">
+            <pre class="brush: js; toolbar: false;">
+              var div = document.createElement("div");
+              var a = document.createElement("p");
+              a.innerText = "Random Stuff";
+              a.className = "menu";
+              var b = document.createElement("p");
+              b.innerText = "More Stuff";
+              b.setAttribute("class", "tag");
+              var c = document.createElement("span");
+              c.innerHTML = '<p class="name">Some Junk</p><hr/><p>More Junk</p>';
+              div.appendChild(a);
+              div.appendChild(b);
+              div.appendChild(c);
+              c.firstChild.innerHTML = "Random Junk";
+            </pre>
+            <p>
+              <code><a target="_blank" href="daythree/dombasics.js">presentations/daythree/dombasics.js</a></code>
+            </p>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>Quick Test &#8212; DOM Basics</h1>
+          </header>
+          <section class="text muchSmallerCode">
+            <pre class="brush: js; toolbar: false;">
+              var div = document.createElement("div");
+              var a = document.createElement("p");
+              a.innerText = "Random Stuff";
+              a.className = "menu";
+              var b = document.createElement("p");
+              b.innerText = "More Stuff";
+              b.setAttribute("class", "tag");
+              var c = document.createElement("span");
+              c.innerHTML = '<p class="name">Some Junk</p><hr/><p>More Junk</p>';
+              div.appendChild(a);
+              div.appendChild(b);
+              div.appendChild(c);
+              c.firstChild.innerHTML = "Random Junk";
+            </pre>
+            
+            <pre class="brush: html; toolbar: false;">
+              <div>
+                <p class="menu">Random Stuff</p>
+                <p class="tag">More Stuff</p>
+                <span>
+                  <p class="name">Random Junk</p>
+                  <hr/>
+                  <p>More Junk</p>
+                </span>
+              </div>
+            </pre>
+          </section>
+        </div>
+        
+        
+        <div class="slide">
+          <header>
+            <h1>JS Callbacks/JSONP and eval()</h1>
+          </header>
+          <section class="text muchSmallerCode">
+            <p>
+              Rather than return a document, return text that is a function being called with javascript elements as parameters.
+            </p>
+            <div>
+              Literally returns text:
+            </div>
+            <pre class="brush: js; toolbar: false;">
+              myCallback(123, "have some fun", [true, false, 1.0], null, "hi")
+            </pre>
+            <br/>
+            <p>
+              Normally you get to specify what function should be called in the query string of an HTTP request (rather than <code>myCallback</code> above)
+            </p>
+            <p class="caution">
+              You can <code>eval()</code> the document, but be careful, anything could be in there...do you really trust the document?
+            </p>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>JSON</h1>
+          </header>
+          <section class="text muchSmallerCode">
+            <p>
+              JavaScript Object Notation
+            </p>
+            <pre class="brush: js; toolbar: false;">
+              {
+                "key" : true, 
+                "k" : 42.0, 
+                "alpha" : ["beta", "zeta"], 
+                "delta" : {
+                  "greek" : "g\u1234m\r\na", 
+                  "stuff" : null             // no comma at end
+                }                            // no comma at end
+              }
+            </pre>
+            <p>
+              Supports: object, array, boolean, string, number, null
+            </p>
+            <br/>
+            <p>
+              Parse it with:
+              <pre class="brush: js; toolbar: false;">
+               var obj = JSON.parse(text);
+              </pre>
+            </p>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>JSON &#8212; Why Use It?</h1>
+          </header>
+          <section class="text">
+            <ul>
+              <li>Faster, easier to parse and generate than XML</li>
+              <li>Parsers/generators available in every language</li>
+              <li>Smaller file transfers</li>
+              <li>Use Content-Type <code>application/json</code> and most frameworks just work</li>
+              <li>On client side, treat it as a Native Object, nothing special to do to use it</li>
+              <li>Native Parser/Generator built-in to modern browsers</li>
+            </ul>
+            <br/>
+            <p>
+              Various implementations at
+              <a href="http://json.org/">http://json.org/</a>
+            </p>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <div class="bg">
+            <section class="middle landing">
+              <h1>Pull headlines from Scripting News JSON River</h1>
+              <h3 class="lab">Lab</h3>
+              <p>
+                <a target="_blank" href="../tutorials/golden/3_river_of_news/river.html">Demonstrate</a>
+              </p>
+            </section>
+          </div>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1 class="lab">Data Format</h1>
+          </header>
+          <section class="text center">
+            <img src="images/rss_json.png"/>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1 class="lab">File Layout</h1>
+          </header>
+          <section class="text">
+            <dl>
+              <dt><code>river.html</code></dt>
+              <dd>HTML Scaffolding, includes basic instructions, references all other files</dd>
+            </dl>
+            <dl>
+              <dt><code>river.css</code></dt>
+              <dd>CSS Styling of elements, may wish to use same <code>className</code></dd>
+            </dl>
+            <dl>
+              <dt><code>util.js</code></dt>
+              <dd>Contains Utility functions you might find useful</dd>
+            </dl>
+            <dl>
+              <dt><code>river.js</code></dt>
+              <dd>
+                Connects button click to a function that makes an XMLHttpRequest for the file<br/>
+                Processes resulting XHR and parses the response as JSON before calling <code>riverCallback</code>
+              </dd>
+            </dl>
+            <dl>
+              <dt><code>student_river.js</code></dt>
+              <dd>
+                File you'll be updating<br/>
+                Update the <code>onsuccess</code> property of the <code>riverCallback</code> global variable
+              </dd>
+            </dl>
+            <p>
+              See the raw JSON at
+              <a href="http://scripting.com/rss.json">http://scripting.com/rss.json</a>
+            </p>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <div class="bg">
+            <section class="middle landing">
+              <h1>Pull headlines from Scripting News JSON River</h1>
+              <h3 class="lab">Lab</h3>
+              <p>
+                <a target="_blank" href="../tutorials/golden/3_river_of_news/river.html">Demonstrate</a>
+              </p>
+            </section>
+          </div>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>OOP &#8212; Why?</h1>
+          </header>
+          <section class="text">
+            <dl>
+              <dt>Abstraction</dt>
+              <dd>know what something does, don't need to know how</dd>
+            </dl>
+            <dl>
+              <dt>Encapsulation</dt>
+              <dd>keep others from breaking your code</dd>
+            </dl>
+            <dl>
+              <dt>Inheritance</dt>
+              <dd>re-use existing code, type hierarchy</dd>
+            </dl>
+            <dl>
+              <dt>Polymorphism</dt>
+              <dd>override methods in inherited subclasses</dd>
+            </dl>
+            <dl>
+              <dt>Decoupling</dt>
+              <dd>Keep your object dependency graph split up</dd>
+            </dl>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>OOP Dependency Graph</h1>
+          </header>
+          <section class="image center">
+            <img src="images/big_ball_of_yarn.jpg" height="540px"/>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>Object Prototype Properties</h1>
+          </header>
+          <section class="text center middle">
+            <img src="images/object_prototype_properties.png" width="800px"/>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>Object Properties</h1>
+          </header>
+          <section class="text center middle">
+            <img src="images/object_properties.png" width="800px"/>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>OOP &#8212; Classes</h1>
+          </header>
+          <section class="text muchSmallerCode">
+            <pre class="brush: js; toolbar: false;">
+              var A = function() {}; // creates the class A
+            </pre>
+            <br/>
+            <div class="center">
+              <!--<img src="images/collabracode_oop1.png"/> -->
+              <img src="images/oop_setup.png"/>
+            </div>
+            <!--
+            <div class="center">
+              <img src="https://chart.googleapis.com/chart?cht=gv&chs=500x300&chl=digraph{A->%22prototype%20{constructor:%20A}%22;}" width="500" height="300"/>
+            </div>
+            -->
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>OOP &#8212; Instances</h1>
+          </header>
+          <section class="text muchSmallerCode">
+            <pre class="brush: js; toolbar: false;">
+              var A = function() {};  // class
+              var b = new A();        // instance of A
+              var c = new A();        // instance of A
+            </pre>
+            <br/>
+            <div class="center">
+              <img src="images/oop_instances.png"/>
+              <!-- <img src="images/collabracode_oop2.png"/> -->
+            </div>
+            <!--
+            <div class="center">
+              <img src="https://chart.googleapis.com/chart?cht=gv&chs=500x300&chl=digraph{A->prototype;b->prototype;c->prototype;}" width="500" height="300"/>
+            </div>
+            -->
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>OOP &#8212; Instance Values</h1>
+          </header>
+          <section class="text muchSmallerCode">
+            <pre class="brush: js; toolbar: false;">
+              var A = function(value) {
+                this.value = value;
+              };
+              var b = new A(42);
+              var c = new A("blah");
+            </pre>
+            <br/>
+            <div class="center">
+              <img src="images/oop_instance_variables.png"/>
+              <!-- <img src="images/collabracode_oop3.png"/> -->
+            </div>
+            <!--
+            <div class="center">
+              <img src="https://chart.googleapis.com/chart?cht=gv&chs=800x300&chl=digraph{A->prototype;%22b%20{value:%2042}%22->prototype;%22c%20{value:%20blah}%22->prototype;}" width="800" height="300"/>
+            </div>
+            -->
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>OOP &#8212; Excessive Memory</h1>
+          </header>
+          <section class="text muchSmallerCode">
+            <pre class="brush: js; toolbar: false;">
+              var A = function(value) {
+                this.value = value;
+                this.draw = function() {};
+              };
+              var b = new A(42);
+              var c = new A("blah");
+            </pre>
+            <br/>
+            <div class="center">
+              <img src="images/oop_excessive_memory.png"/>
+              <!-- <img src="images/collabracode_oop4.png"/> -->
+            </div>
+            <!--
+            <div class="center">
+              <img src="https://chart.googleapis.com/chart?cht=gv&chs=800x200&chl=digraph{A->prototype;%22b%20{value:%2042,%20draw:%20function()}%22->prototype;%22c%20{value:%20blah,%20draw:%20function()}%22->prototype;}" width="800" height="200"/>
+            </div>
+            -->
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>OOP &#8212; Single Implementation</h1>
+          </header>
+          <section class="text muchSmallerCode">
+            <pre class="brush: js; toolbar: false;">
+              var A = function(value) { this.value = value; };
+              var b = new A(42);
+              var c = new A("blah");
+              A.prototype.draw = function() {};
+            </pre>
+            <br/>
+            <div class="center">
+              <img src="images/oop_single_implementation.png"/>
+              <!-- <img src="images/collabracode_oop5.png"/> -->
+            </div>
+            <!--
+            <div class="center">
+              <img src="https://chart.googleapis.com/chart?cht=gv&chs=800x350&chl=digraph{A->%22prototype%20{draw:%20function()}%22;%22b%20{value:%2042}%22->%22prototype%20{draw:%20function()}%22;%22c%20{value:%20blah}%22->%22prototype%20{draw:%20function()}%22;}" width="800" height="350"/>
+            </div>
+            -->
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>OOP &#8212; New Base</h1>
+          </header>
+          <section class="text muchSmallerCode">
+            <pre class="brush: js; toolbar: false;">
+              var A = function(value) { this.value = value; };
+              A.prototype.draw = function() {};
+              var b = new A(42);
+              var c = new A("blah");
+              c.y = 2;
+              A.prototype = {"v": 1};
+              var d = new A(7);
+            </pre>
+            <br/>
+            <div class="center">
+              <img src="images/oop_new_base_class.png"/>
+              <!-- <img src="images/collabracode_oop4.png" width="800px"/> -->
+              <!-- <img src="images/collabracode_oop6.png"/> -->
+            </div>
+            <!--
+            <div class="center">
+              <img src="https://chart.googleapis.com/chart?cht=gv&chs=800x200&chl=digraph{%22b%20{value:%2042,%20y:%202}%22->%22prototype%20{draw:%20function()}%22;%22c%20{value:%20blah}%22->%22prototype%20{draw:%20function()}%22;A->%22prototype%20{v%20:%201}%22}" width="800" height="200"/>
+            </div>
+            -->
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>OOP &#8212; Class/Instance Functions</h1>
+          </header>
+          <section class="text muchSmallerCode">
+            <pre class="brush: js; toolbar: false;">
+              b.__proto__.hasOwnProperty("constructor") // true
+              "constructor" in c                        // true
+              for (var i in b.__proto__) alert(i);      // draw
+              c.constructor    // function (value) { this.value = value; }
+              c instanceof A   // false
+              d instanceof A   // true
+              d.constructor    // function Object() { [native code] }
+            </pre>
+            <br/>
+            <div class="center">
+              <img src="images/oop_new_base_class.png"/>
+              <!-- <img src="images/collabracode_oop6.png"/> -->
+            </div>
+            <!--
+            <div class="center">
+              <img src="https://chart.googleapis.com/chart?cht=gv&chs=800x200&chl=digraph{%22b%20{value:%2042,%20y:%202}%22->%22prototype%20{draw:%20function()}%22;%22c%20{value:%20blah}%22->%22prototype%20{draw:%20function()}%22;A->%22prototype%20{v%20:%201}%22}" width="800" height="200"/>
+            </div>
+            -->
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>OOP &#8212; Example</h1>
+          </header>
+          <section class="text muchSmallerCode">
+            <pre class="brush: js; toolbar: false;">
+              var Calculator = function(a, b) {
+                  this.a = Number(a || 0);  // always ensure inputs are the right types
+                  this.b = Number(b || 0);  // best to ensure before storing in a class
+              };
+
+              Calculator.prototype.add  = function() {
+                return this.a + this.b;
+              };
+              Calculator.prototype.sub  = function() {
+                return this.a - this.b;
+              };
+              Calculator.prototype.mult = function() {
+                return this.a * this.b;
+              };
+              Calculator.prototype.div  = function() {
+                return this.a / this.b;
+              };
+
+              var calc = new Calculator("7", 6); // -> new instance
+              var ultimateAnswer = calc.mult();  // -> 42
+              var unlucky = calc.add();          // -> 13
+            </pre>
+            <p>
+              <code><a target="_blank" href="daythree/calculator.js">presentations/daythree/calculator.js</a></code>
+            </p>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>OOP &#8212; Prototype Inheritance</h1>
+          </header>
+          <section class="text muchSmallerCode">
+            <pre class="brush: js; toolbar: false;">
+              var AdvCalculator = function(a, b) {
+                  this.base = Calculator;
+                  this.base(a, b);
+              };
+              
+              AdvCalculator.prototype = new Calculator();
+              AdvCalculator.prototype.constructor = AdvCalculator;
+              AdvCalculator.prototype.logn = function() {
+                  return Math.log(this.a) / Math.log(this.b);
+              };
+              
+              AdvCalculator.prototype.pow = function() {
+                  return Math.pow(this.a, this.b);
+              };
+              
+              var calc = new AdvCalculator("7", 6); // -> new instance
+              var ultimateAnswer = calc.mult();     // -> 42
+              var largeNumber = calc.pow();         // -> 117649
+            </pre>
+            <p>
+              <code><a target="_blank" href="daythree/advcalculator.js">presentations/daythree/advcalculator.js</a></code>
+            </p>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <div class="bg">
+            <section class="middle landing">
+              <h1>Shopping Cart Item OOP</h1>
+              <h3 class="lab">Lab</h3>
+            </section>
+          </div>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>Requirements</h1>
+          </header>
+          <section class="text">
+            <br/>
+            <p>Shopping Cart must support wide variety of items</p>
+            <ul>
+              <li>Name and plot some items</li>
+              <li>Ask for relationships between items</li>
+              <li>Get audience to come up with Class Diagram</li>
+              <li>Implement class diagram in JavaScript</li>
+            </ul>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>Requirements</h1>
+          </header>
+          <section class="text middle center">
+            <br/>
+            <img src="images/shopping_cart_item_hierarchy.png"/>
+            <!--
+            <img src="https://chart.googleapis.com/chart?cht=gv&chs=700x400&chl=graph{item--electronic;item--physical--sized--apparel--shirt;item--nonitem--donation;physical--nonsized--mug;nonsized--watches;nonsized--stickers;apparel--pants;apparel--shoes;apparel--belt;apparel--coat;nonsized--%22ipad%20cover%22}" width="700" height="400"/> -->
+          </section>
+        </div>
+        
+        <div class="slide">
+          <div class="bg">
+            <section class="middle landing">
+              <h1>Shopping Cart Item OOP</h1>
+              <h3 class="lab">Lab</h3>
+            </section>
+          </div>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>Event Handlers &#8212; Bubbling</h1>
+          </header>
+          <section class="text">
+            <br/>
+            <ul>
+              <li>Callbacks executed whenever an event is bubbled up.</li>
+              <li>Events bubble up from an element all the way up to the body</li>
+              <li>Return false in handler to stop propagation/bubbling</li>
+              <li>Add/remove/override event handlers for any element on the page</li>
+              <li>Completely Asynchronous &#8212; Set it and it'll fire later</li>
+            </ul>
+            <br/>
+            <p>
+              <a target="_blank" href="http://jsfiddle.net/qq3X9/">Demonstrate</a><br/>
+              <a target="_blank" href="../tutorials/golden/4_calculator/calculator.html">Calculator Lab Demo</a>
+            </p>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>Event Handlers &#8212; Common</h1>
+          </header>
+          <section class="text">
+            <ul>
+              <li>onload</li>
+              <li>onunload</li>
+              <li>onclick</li>
+              <li>onsubmit</li>
+              <li>onfocus</li>
+              <li>onblur</li>
+              <li>onchange</li>
+              <li>onmouseover</li>
+              <li>onmouseout</li>
+            </ul>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>Event Handlers &#8212; Bad Way</h1>
+          </header>
+          <section class="text muchSmallerCode">
+            <br/>
+            <p>
+              Inline event handler
+            </p>
+            <pre class="brush: html; toolbar: false;">
+              <a href="http://google.com"  onclick="alert('hello!')">Google</a>
+            </pre>
+            <br/>
+            <p>
+              Great for debugging
+              never use in real life...if you want your sanity
+            </p>
+            <p>
+              Overriding all handlers on an element
+            </p>
+            <pre class="brush: js; toolbar: false;">
+              elem.onclick = handler;
+            </pre>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>Event Handlers</h1>
+          </header>
+          <section class="text muchSmallerCode">
+            <br/>
+            <p>
+              Adding Event Handlers
+            </p>
+            <pre class="brush: js; toolbar: false;">
+              // taken from 
+              // http://www.onlinetools.org/articles/unobtrusivejavascript/chapter4.html
+              function addEvent(obj, evType, fn) {
+                if (obj.addEventListener) {   // standards-compliant browsers
+                  obj.addEventListener(evType, fn, false);
+                  return true;
+                } else if (obj.attachEvent) { // IE
+                  var r = obj.attachEvent("on"+evType, fn);
+                  return r;
+                } else {
+                  return false;
+                }
+              }
+            </pre>
+            <br/>
+            <p>
+              Always reuse an existing library, don't write this from scratch!
+            </p>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>Event Types</h1>
+          </header>
+          <section class="text">
+            <br/>
+            <ul>
+              <li>Form Events</li>
+              <li>Image Events</li>
+              <li>Image Map Events</li>
+              <li>Link Events</li>
+              <li>Window Events</li>
+              <li>Keyboard Events</li>
+              <li>Mouse Events</li>
+            </dl>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>Event Handlers &#8212; Properties</h1>
+          </header>
+          <section class="text left">
+            <br/>
+            <dl>
+              <dt>Event Type</dt>
+              <dd>type</dd>
+            </dl>
+            <br/>
+            <div>Possible Properties</div>
+            <dl>
+              <dt>DOM Element</dt>
+              <dd>srcElement &#8212; IE</dd>
+              <dd>target &#8212; non-IE</dd>
+            </dl>
+            <br/>
+            <dl>
+              <dt>Keyboard Event</dt>
+              <dd>keyCode</dd>
+              <dd>which</dd>
+            </dl>
+          </section>
+          <section class="text right">
+            <br/>
+            <dl>
+              <dt>Mouse Event</dt>
+              <dd>clientX</dd>
+              <dd>clientY</dd>
+              <dd>layerX</dd>
+              <dd>layerY</dd>
+              <dd>offsetX</dd>
+              <dd>offsetY</dd>
+              <dd>pageX</dd>
+              <dd>pageY</dd>
+              <dd>screenX</dd>
+              <dd>screenY</dd>
+              <dd>x</dd>
+              <dd>y</dd>
+            </dl>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>Event Ordering</h1>
+          </header>
+          <section class="text">
+            <br/>
+            <div class="center">
+              <img src="images/google.png"/>
+            </div>
+            <p>
+              Assume textbox = document.activeElement 
+            </p>
+            <p>
+              If you click on Google Search
+            </p>
+            <ul>
+              <li>onblur -&gt; text box</li>
+              <li>onfocus -&gt; button</li>
+              <li>onclick -&gt; button</li>
+            </ul>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <div class="bg">
+            <section class="middle landing">
+              <h1>Write a Calculator</h1>
+              <h3 class="lab">Lab</h3>
+              <a target="_blank" href="../tutorials/golden/4_calculator/calculator.html">Demo</a>
+            </section>
+          </div>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1 class="lab">File Layout</h1>
+          </header>
+          <section class="text">
+            <dl>
+              <dt><code>calculator.html</code></dt>
+              <dd>HTML Scaffolding, includes basic instructions, references all other files</dd>
+            </dl>
+            <dl>
+              <dt><code>calculator.css</code></dt>
+              <dd>CSS Styling of elements</dd>
+            </dl>
+            <dl>
+              <dt><code>util.js</code></dt>
+              <dd>Contains general utility functions you might find useful</dd>
+            </dl>
+            <dl>
+              <dt><code>calculator.js</code></dt>
+              <dd>Provides some basic helper functions you might find useful</dd>
+            </dl>
+            <dl>
+              <dt><code>student_calculator.js</code></dt>
+              <dd>
+                File you'll be implementing<br/>
+                Tasks you'll need to do:
+                <ul>
+                  <li>Connect up all the buttons to handlers<li/>
+                  <li>Keep a memory value and modify it with M+, M-, MC</li>
+                  <li>Ensure at most 1 "." in number</li>
+                  <li>Clear display when number pressed after +, -, *, /, M+, M-, MR, MC pressed</li>
+                </ul>
+              </dd>
+            </dl>
+            <p>
+              See the raw JSON at
+              <a href="http://scripting.com/rss.json">http://scripting.com/rss.json</a>
+            </p>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <div class="bg">
+            <section class="middle landing">
+              <h1>Write a Calculator</h1>
+              <h3 class="lab">Lab</h3>
+              <a target="_blank" href="../tutorials/golden/4_calculator/calculator.html">Demo</a>
+            </section>
+          </div>
+        </div>
+
+      <!-- slides -->
+
+    </div> <!-- presentation -->
+    <!--[if lt IE 9]>
+    <script
+    src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">
+    </script>
+    <script>CFInstall.check({ mode: "overlay" });</script>
+    <![endif]-->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+    <script type="text/javascript" src="js/slideshow.js"></script>
+    <script type="text/javascript">
+      function getInnerText(elem) {
+        if(typeof elem.innerText == "undefined") {
+          return elem.textContent;
+        }
+        return elem.innerText;
+      }
+      function setInnerText(elem, value) {
+        if(typeof elem.innerText == "undefined") {
+          elem.textContent = value;
+        } else {
+          elem.innerText = value;
+        }
+      }
+      function stringify(value) {
+        if(typeof value == "string") {
+          return "\"" + value + "\"";
+        }
+        if(typeof value == "object") {
+          return JSON.stringify(value);
+        }
+        return String(value);
+      }
+    </script>
+  </body>
+</html>
