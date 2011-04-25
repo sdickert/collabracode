@@ -51,8 +51,8 @@
         <div class="slide" id="intro">
           <div class="bg">
             <section class="middle landing">
-              <h1>Scoping, DOM Overview, JSON, OOP</h1>
-              <h4>Day 2</h4>
+              <h1>DOM Overview, JSON, OOP</h1>
+              <h4>Day 3</h4>
               <h4>by <code>collabraCode('js');</code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h4>
             </section>
           </div>
@@ -63,263 +63,133 @@
             <h1>Today&#39;s Agenda</h1>
           </header>
           <section class="text">
-            <h2>Today&#39;s Objectives</h2>
+            <h2>Today&#39;s Objectives/Labs</h2>
             <ul>
-              <li>Understand scoping</li>
-              <li>Present info from a JSON or JSONP backend</li>
-              <li>Manipulate the DOM</li>
-              <li>Read object-oriented JavaScript</li>
+              <li>Create a mobile-optimized version of the Scripting News Site</li>
+              <li>Determine how to model shopping cart items</li>
             </ul>
             <h2>Topics</h2>
             <ul>
-              <li>Scoping</li>
               <li>DOM Overview</li>
               <li>JSONP vs. JSON</li>
               <li>OOP</li>
             </ul>
-            <h2>Lab</h2>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <div class="bg">
+            <section class="middle landing">
+              <h1>Create a mobile-optimized version of Scripting News</h1>
+              <h3 class="lab">Lab</h3>
+            </section>
+          </div>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>Problem breakdown</h1>
+          </header>
+          <section class="text">
             <ul>
-              <li>Pull headlines from an external source and display on your site</li>
-              <li>Shopping Cart Item OOP</li>
+              <li>What's wrong with the current website?</li>
+              <li>Where is the data coming from?</li>
+              <li>What format is the data?</li>
+              <li>How do I access the data?</li>
+              <li>How will we display the data?</li>
+              <li>Any special formatting requirements?</li>
             </ul>
           </section>
         </div>
         
         <div class="slide">
           <header>
-            <h1>Quick Test &#8212; Scoping</h1>
+            <h1>Current site in normal browser</h1>
           </header>
-          <section class="text muchSmallerCode">
-            <pre class="brush: js; toolbar: false;">
-              var a = "alpha";
-              var b = 1 + 2;
-              var c = "gamma";
-              
-              function mytest(b) {
-                a += 10;
-                b += 10;
-              }
-              mytest(b);
-              mytest(c);
-              
-              // a = ?
-              // b = ?
-              // c = ?
-            </pre>
-            <p>
-              <code><a target="_blank" href="daythree/scoping.js">presentations/daythree/scoping.js</a></code>
-            </p>
-            <div class="tips">Using var creates the variable at the innermost scope</div>
-            <div>Braces <strong>DO NOT</strong> create a new inner scope</div>
-            <div><strong>ONLY</strong> functions create a new inner scope</div>
+          <section class="text center">
+            <image src="images/scriptingnews1.png" width="800"/>
           </section>
         </div>
         
         <div class="slide">
           <header>
-            <h1>Quick Test &#8212; Scoping</h1>
-          </header>
-          <section class="text muchSmallerCode">
-            <pre class="brush: js; toolbar: false;">
-              var a = "alpha";
-              var b = 1 + 2;
-              var c = "gamma";
-              
-              function mytest(b) {
-                a += 10;
-                b += 10;
-              }
-              mytest(b);
-              mytest(c);
-              
-              // a = "alpha1010"
-              // b = 3
-              // c = "gamma"
-            </pre>
-          </section>
-        </div>
-        
-        <div class="slide">
-          <header>
-            <h1>DOM (Document Object Model)</h1>
+            <h1>Current site in mobile browser</h1>
           </header>
           <section class="text">
-            <dl>
-              <dt>document</dt>
-              <dd>Top-most element of a DOM, tree-structured</dd>
-              <dd>Contains the root node where everything starts</dd>
-              <dd>Used to create other elements</dd>
-              <dd>Used to scan for elements</dd>
-            </dl>
-            <dl>
-              <dt>Node</dt>
-              <dd>Text Node, Comment Node, Element Node, Attribute Node</dd>
-            </dl>
-            <dl>
-              <dt>Element</dt>
-              <dd>Created by every opening tag in an HTML document</dd>
-              <dd>May contain other elements as child nodes</dd>
-              <dd>May contain text nodes as child nodes</dd>
-              <dd>May have sibling elements</dd>
-            </dl>
-            <br/>
-            <p>
-              <a target="_blank" href="../tutorials/golden/3_river_of_news/river.html">Upcoming Lab Demo</a>
-            </p>
-          </section>
-        </div>
-        
-        <div class="slide">
-          <header>
-            <h1>DOM &#8212; Functions for Lab</h1>
-          </header>
-          <section class="text">
-            <dl>
-              <dt>document.getElementById("id")</dt>
-              <dd>returns first Element with specified id attribute otherwise null</dd>
-            </dl>
-            <dl>
-              <dt>document.createElement("div")</dt>
-              <dd>returns a new "div" Element with no children and no parent</dd>
-            </dl>
-            <dl>
-              <dt>document.createTextNode("some HTML unescaped text")</dt>
-              <dd>returns a text Node that can be added to an Element</dd>
-            </dl>
-            <dl>
-              <dt><code>element</code>.appendChild(childNode)</dt>
-              <dd>adds aNode as a child</dd>
-            </dl>
-            <dl>
-              <dt><code>element</code>.getAttribute(attributeName)</dt>
-              <dd>Returns attribute value as string or null if not found</dd>
-            </dl>
-            <dl>
-              <dt><code>element</code>.setAttribute(attributeName, attributeValue)</dt>
-              <dd>Sets the attribute value as a string for attributeName</dd>
-            </dl>
-            <br/>
-            <ul>
-              <li><a target="_blank" href="https://developer.mozilla.org/en/DOM/document">https://developer.mozilla.org/en/DOM/document</a></li>
-              <li><a target="_blank" href="https://developer.mozilla.org/en/DOM/node">https://developer.mozilla.org/en/DOM/node</a></li>
-              <li><a target="_blank" href="https://developer.mozilla.org/en/DOM/element">https://developer.mozilla.org/en/DOM/element</a></li>
-            </ul>
-          </section>
-        </div>
-        
-        <div class="slide">
-          <header>
-            <h1>DOM &#8212; Properties for Lab</h1>
-          </header>
-          <section class="text">
-            <dl>
-              <dt><code>element</code>.textContent</dt>
-              <dd>all text in Element through leaf nodes</dd>
-            </dl>
-            <dl>
-              <dt><code>element</code>.innerHTML</dt>
-              <dd>all child Elements through leaf nodes as HTML text</dd>
-            </dl>
-            <dl>
-              <dt><code>element</code>.className</dt>
-              <dd>string containing "class" attribute for this Element</dd>
-            </dl>
-            <dl>
-              <dt><code>node</code>.childNodes[]</dt>
-              <dd>Access individual child nodes, immutable</dd>
-            </dl>
-          </section>
-        </div>
-        
-        <div class="slide">
-          <header>
-            <h1>Quick Test &#8212; DOM Basics</h1>
-          </header>
-          <section class="text muchSmallerCode">
-            <pre class="brush: js; toolbar: false;">
-              var div = document.createElement("div");
-              var a = document.createElement("p");
-              a.innerText = "Random Stuff";
-              a.className = "menu";
-              var b = document.createElement("p");
-              b.innerText = "More Stuff";
-              b.setAttribute("class", "tag");
-              var c = document.createElement("span");
-              c.innerHTML = '<p class="name">Some Junk</p><hr/><p>More Junk</p>';
-              div.appendChild(a);
-              div.appendChild(b);
-              div.appendChild(c);
-              c.firstChild.innerHTML = "Random Junk";
-            </pre>
-            <p>
-              <code><a target="_blank" href="daythree/dombasics.js">presentations/daythree/dombasics.js</a></code>
-            </p>
-          </section>
-        </div>
-        
-        <div class="slide">
-          <header>
-            <h1>Quick Test &#8212; DOM Basics</h1>
-          </header>
-          <section class="text muchSmallerCode">
-            <pre class="brush: js; toolbar: false;">
-              var div = document.createElement("div");
-              var a = document.createElement("p");
-              a.innerText = "Random Stuff";
-              a.className = "menu";
-              var b = document.createElement("p");
-              b.innerText = "More Stuff";
-              b.setAttribute("class", "tag");
-              var c = document.createElement("span");
-              c.innerHTML = '<p class="name">Some Junk</p><hr/><p>More Junk</p>';
-              div.appendChild(a);
-              div.appendChild(b);
-              div.appendChild(c);
-              c.firstChild.innerHTML = "Random Junk";
-            </pre>
-            
-            <pre class="brush: html; toolbar: false;">
-              <div>
-                <p class="menu">Random Stuff</p>
-                <p class="tag">More Stuff</p>
-                <span>
-                  <p class="name">Random Junk</p>
-                  <hr/>
-                  <p>More Junk</p>
-                </span>
-              </div>
-            </pre>
-          </section>
-        </div>
-        
-        
-        <div class="slide">
-          <header>
-            <h1>JS Callbacks/JSONP and eval()</h1>
-          </header>
-          <section class="text muchSmallerCode">
-            <p>
-              Rather than return a document, return text that is a function being called with javascript elements as parameters.
-            </p>
-            <div>
-              Literally returns text:
+            <div class="center">
+              <image src="images/scriptingnews2.png" height="350"/>
+              <image src="images/scriptingnews3.png" height="350"/>
             </div>
-            <pre class="brush: js; toolbar: false;">
-              myCallback(123, "have some fun", [true, false, 1.0], null, "hi")
-            </pre>
+            <div class="text left">
+            <ul>
+              <li>Article text is too wide or too small</li>
+              <li>Constant scrolling or zooming</li>
+              <li>Site header is too wide</li>
+              <li>Cannot see article list</li>
+              <li>Related information distracts</li>
+            </ul>
+            </section>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>Where is the data coming from?</h1>
+          </header>
+          <section class="text">
+            <p>
+              Scripting News publishes data in several formats
+            </p>
+            <dl>
+              <dt>HTML</dt>
+              <dd>Already available but not optimized for mobile</dd>
+              <dd>Structured with presentation attributes, not easy to parse in browser if you want to generate a different HTML output</dd>
+              <dd><code><a target="_blank" href="http://scripting.com/">http://scripting.com/</a></code></dd>
+            </dl>
+            <dl>
+              <dt>RSS</dt>
+              <dd>XML format capable of being parsed in the browser</dd>
+              <dd>Structured without presentation attributes, easy to parse in browser, if well-formed XML</dd>
+              <dd><code><a target="_blank" href="http://scripting.com/rss.xml">http://scripting.com/rss.xml</a></code></dd>
+            </dl>
+            <dl>
+              <dt>JSON</dt>
+              <dd>Format easily readable in JavaScript in the browser</dd>
+              <dd>Structured without presentation attributes, easy to parse in browser</dd>
+              <dd><code><a target="_blank" href="http://scripting.com/rss.json">http://scripting.com/rss.json</a></code></dd>
+            </dl>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>RSS or JSON?</h1>
+          </header>
+          <section class="text muchSmallerCode">
+            <ul>
+              <li>JSON is faster, easier to parse and generate than XML</li>
+              <li>Native Parser/Generator built-in to modern browsers</li>
+              <li>Smaller file transfers</li>
+              <li>On client side, treat it as a Native Object, nothing special to do to use it</li>
+            </ul>
             <br/>
             <p>
-              Normally you get to specify what function should be called in the query string of an HTTP request (rather than <code>myCallback</code> above)
+              Parse it with:
+              <pre class="brush: js; toolbar: false;">
+                var obj = JSON.parse(text);
+              </pre>
             </p>
-            <p class="caution">
-              You can <code>eval()</code> the document, but be careful, anything could be in there...do you really trust the document?
+            <br/>
+            <p>
+              Read more at:
+              <a target="_blank" href="http://json.org/">http://json.org/</a>
             </p>
           </section>
         </div>
         
         <div class="slide">
           <header>
-            <h1>JSON</h1>
+            <h1>What does JSON look like?</h1>
           </header>
           <section class="text muchSmallerCode">
             <p>
@@ -339,55 +209,437 @@
             <p>
               Supports: object, array, boolean, string, number, null
             </p>
-            <br/>
-            <p>
-              Parse it with:
-              <pre class="brush: js; toolbar: false;">
-               var obj = JSON.parse(text);
-              </pre>
-            </p>
           </section>
         </div>
         
         <div class="slide">
           <header>
-            <h1>JSON &#8212; Why Use It?</h1>
-          </header>
-          <section class="text">
-            <ul>
-              <li>Faster, easier to parse and generate than XML</li>
-              <li>Parsers/generators available in every language</li>
-              <li>Smaller file transfers</li>
-              <li>Use Content-Type <code>application/json</code> and most frameworks just work</li>
-              <li>On client side, treat it as a Native Object, nothing special to do to use it</li>
-              <li>Native Parser/Generator built-in to modern browsers</li>
-            </ul>
-            <br/>
-            <p>
-              Various implementations at
-              <a href="http://json.org/">http://json.org/</a>
-            </p>
-          </section>
-        </div>
-        
-        <div class="slide">
-          <div class="bg">
-            <section class="middle landing">
-              <h1>Pull headlines from Scripting News JSON River</h1>
-              <h3 class="lab">Lab</h3>
-              <p>
-                <a target="_blank" href="../tutorials/golden/3_river_of_news/river.html">Demonstrate</a>
-              </p>
-            </section>
-          </div>
-        </div>
-        
-        <div class="slide">
-          <header>
-            <h1 class="lab">Data Format</h1>
+            <h1>Show me the file</h1>
           </header>
           <section class="text center">
             <img src="images/rss_json.png"/>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>SideNote &#8212; Array API</h1>
+          </header>
+          <section class="text muchSmallerCode">
+            <pre class="brush: js; toolbar: false;">
+              var a = [210, 17, "alpha", 6.7, true, null, 42];
+              var b = new Array();
+              var incrementBy2 = function(v) { return v + 2; }
+              var sum = function(prev, current) { return prev + current; }
+
+              b.push("alpha");           // ["alpha"]
+              b.push(5, false, "igloo"); // ["alpha", 5, false, "igloo"]
+              b[0];                      // 5
+              var c = b.pop();           // ["alpha", 5, false], c = "igloo"
+              b.unshift("happy", "joy"); // ["happy", "joy", "alpha", 5, false]
+              var d = b.shift();         // ["joy", "alpha", 5, false], d = "joy"
+              b.reverse();               // [false, 5, "alpha", "joy"]
+              b.sort();                  // [false, "alpha", "joy", 5]
+              b.concat([63, 42]);        // [false, "alpha", "joy", 5, 63, 42]
+              b.join(",");               // "false,alpha,joy,5,63,42"
+              b.map(incrementBy2);       // [2, "alpha2", "joy2", 7, 65, 44]
+              b.reduce(sum);             // "falsealphajoy56342"
+            </pre>
+            <br/>
+            <div>
+              More at <a target="_blank" href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array">https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array</a>
+            </div>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>How do I access the JSON file?</h1>
+          </header>
+          <section class="text">
+            <p>
+              Available from <code><a target="_blank" href="http://scripting.com/rss.json">http://scripting.com/rss.json</a></code>
+            </p>
+            <dl>
+              <dt>Can I access it from the browser on my own site through that URL?</dt>
+              <dd>Yes, but not through JavaScript.</dd>
+            </dl>
+            <dl>
+              <dt>Can I modify the Scripting News site while I test this?</dt>
+              <dd>No.</dd>
+            </dl>
+            <dl>
+              <dt>Why can't I access it through the browser?</dt>
+              <dd>From JavaScript to connect to another site, certain headers need to be sent and the scripting.com site is not sending those headers right now.</dd>
+            </dl>
+            <dl>
+              <dt>Is another site sending those headers and proxying the info?</dt>
+              <dd>Yes. <code><a target="_blank"  href="http://collabracode-js.appspot.com/rss.json">http://collabracode-js.appspot.com/rss.json</a></code></dd>
+            </dl>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>SideNote &#8212; XMLHttpRequest</h1>
+          </header>
+          <section class="text muchSmallerCode">
+            <pre class="brush: js, toolbar: false">
+              function loadRemoteXML(callback) {
+                var req = new XMLHttpRequest();
+                req.open("GET", REMOTE_URL, true);
+                req.onreadystatechange = function(aEvt) {
+                  if(req.readyState == 4) {
+                    if(req.status == 200) {
+                      var obj = JSON.parse(req.responseText);
+                      if(obj) {
+                        if(callback && callback.onsuccess) { callback.onsuccess(obj);
+                        } else { log(obj); }
+                      } else {
+                        if(callback && callback.onerror) { callback.onerror(req);
+                        } else { log(req); }
+                      }
+                    } else {
+                      if(callback && callback.onerror) { callback.onerror(req);
+                      } else { log(req); }
+                    }
+                  }
+                };
+                req.send(null);
+              }
+            </pre>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>SideNote &#8212; Scopes/Closures</h1>
+          </header>
+          <section class="text muchSmallerCode">
+            <pre class="brush: js; toolbar: false;">
+              function add(num) {
+                // num is local and shared between the add function 
+                // and any functions created below
+                var a = function(elem) {
+                  // num is available here because it was available
+                  //     at the time this function was generated
+                  // num is part of the closure
+                  // elem is unique per function call to a()
+                  // num is unique per function call to add() 
+                  //     and shared per function call to a()
+                  return elem + num;
+                }
+                return a;
+              }
+              
+              var number = 5;
+              var f = add(number); // variable "num" in f -> 5
+              f(-1);               // -> 4
+              f("8");              // -> "85"
+              var arr = [1, 23, 17];
+              arr.map(f);          // -> [6, 28, 22]
+              arr;                 // -> [1, 23, 17]
+              console.log(number); // -> "5"
+            </pre>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>How will we display the data?</h1>
+          </header>
+          <section class="text">
+            <p>
+              We can create HTML elements on the page using the DOM API.
+            </p>
+            <p>
+              The DOM is split up into several components
+            </p>
+            <dl>
+              <dt>document</dt>
+              <dd>Top-most element of a DOM, tree-structured</dd>
+              <dd>Contains the root node where everything starts</dd>
+              <dd>Used to create other elements</dd>
+              <dd>Used to scan for elements</dd>
+            </dl>
+            <dl>
+              <dt>Node</dt>
+              <dd>Text Node, Comment Node, Element Node, Attribute Node</dd>
+            </dl>
+            <dl>
+              <dt>Element</dt>
+              <dd>Created by every opening tag in an HTML document</dd>
+              <dd>May contain other elements as child nodes</dd>
+              <dd>May contain text nodes as child nodes</dd>
+              <dd>May have sibling elements</dd>
+            </dl>
+            <ul>
+          </section>
+        </div>
+        
+        
+        <div class="slide">
+          <header>
+            <h1>DOM &#8212; document</h1>
+          </header>
+          <section class="text">
+            <dl>
+              <dt class="tips">document.getElementById("some-id")</dt>
+              <dd>returns first Element with specified id attribute otherwise null</dd>
+            </dl>
+            <dl>
+              <dt>document.getElementsByClassName("class-tag-value")</dt>
+              <dd>returns list of Element with specified class attribute</dd>
+            </dl>
+            <dl>
+              <dt class="tips">document.createElement("div")</dt>
+              <dd>returns a new "div" Element with no children and no parent</dd>
+            </dl>
+            <dl>
+              <dt class="tips">document.createTextNode("some HTML unescaped text")</dt>
+              <dd>returns a text Node that can be added to an Element</dd>
+            </dl>
+            <dl>
+              <dt>document.createDocumentFragment()</dt>
+              <dd>returns a fragment that can be added to a document</dd>
+            </dl>
+            <br/>
+            <p>
+              More at <a target="_blank" href="https://developer.mozilla.org/en/DOM/document">https://developer.mozilla.org/en/DOM/document</a>
+            </p>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>DOM &#8212; Node Properties</h1>
+          </header>
+          <section class="text">
+            <dl>
+              <dt>parentNode</dt>
+              <dd>The Node this Node is under in the tree</dd>
+            </dl>
+            <dl>
+              <dt>childNodes[]</dt>
+              <dd>Access individual child nodes, immutable</dd>
+            </dl>
+            <dl>
+              <dt>firstChild</dt>
+              <dd>first child Node or null if no children</dd>
+            </dl>
+            <dl>
+              <dt>lastChild</dt>
+              <dd>last child Node or null if no children</dd>
+            </dl>
+            <dl>
+              <dt>nextSibling</dt>
+              <dd>next Node under the same parentNode or null if last</dd>
+            </dl>
+            <dl>
+              <dt>previousSibling</dt>
+              <dd>previous Node under the same parentNode or null if first</dd>
+            </dl>
+            <br/>
+            <p>
+              More at <a target="_blank" href="https://developer.mozilla.org/en/DOM/node">https://developer.mozilla.org/en/DOM/node</a>
+            </p>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>DOM &#8212; Node Functions</h1>
+          </header>
+          <section class="text">
+            <dl>
+              <dt class="tips">appendChild(childNode)</dt>
+              <dd>adds aNode as a child</dd>
+            </dl>
+            <dl>
+              <dt>insertBefore(aNode, beforeNode)</dt>
+              <dd>inserts aNode as a child and placed before beforeNode if beforeNode is a child of this Node, otherwise, append aNode to the end</dd>
+            </dl>
+            <dl>
+              <dt>removeChild(aNode)</dt>
+              <dd>removes aNode if it is a direct child</dd>
+            </dl>
+            <dl>
+              <dt>replaceChild(newChild, oldChild)</dt>
+              <dd>removes oldChild if it exists and replaces it with newChild</dd>
+            </dl>
+            <dl>
+              <dt>hasChildNodes()</dt>
+              <dd>whether this node has children</dd>
+            </dl>
+            <dl>
+              <dt>hasAttributes()</dt>
+              <dd>whether this node has attributes</dd>
+            </dl>
+            <br/>
+            <p>
+              More at <a target="_blank" href="https://developer.mozilla.org/en/DOM/node">https://developer.mozilla.org/en/DOM/node</a>
+            </p>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>DOM &#8212; Element Properties</h1>
+          </header>
+          <section class="text">
+            <dl>
+              <dt class="tips">attributes</dt>
+              <dd>list of attribute Nodes for this Element</dd>
+            </dl>
+            <dl>
+              <dt>tagName</dt>
+              <dd>tag for Element</dd>
+            </dl>
+            <dl>
+              <dt>textContent</dt>
+              <dd>all text in Element through leaf nodes</dd>
+            </dl>
+            <dl>
+              <dt class="tips">innerHTML</dt>
+              <dd>all child Elements through leaf nodes as HTML text</dd>
+            </dl>
+            <dl>
+              <dt class="tips">className</dt>
+              <dd>string containing "class" attribute for this Element</dd>
+            </dl>
+            <dl>
+              <dt>style</dt>
+              <dd>an object representing the style for this Element</dd>
+            </dl>
+            <br/>
+            <p>
+              More at <a target="_blank" href="https://developer.mozilla.org/en/DOM/element">https://developer.mozilla.org/en/DOM/element</a>
+            </p>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>DOM &#8212; Element Functions</h1>
+          </header>
+          <section class="text">
+            <dl>
+              <dt>getAttribute(attributeName)</dt>
+              <dd>Returns attribute value as string or null if not found</dd>
+            </dl>
+            <dl>
+              <dt class="tips">setAttribute(attributeName, attributeValue)</dt>
+              <dd>Sets the attribute value as a string for attributeName</dd>
+            </dl>
+            <dl>
+              <dt>removeAttribute(attributeName)</dt>
+              <dd>Removes the attribute value for attributeName</dd>
+            </dl>
+            <dl>
+              <dt class="tips">addEventListener(type, handler, useCapture)</dt>
+              <dd>Adds an event listener to this element for the specified event type</dd>
+            </dl>
+            <dl>
+              <dt>removeEventListener(type, handler, useCapture)</dt>
+              <dd>Removes an event listener from this element for the specified event type</dd>
+            </dl>
+            <dl>
+              <dt>getElementsByClassName(className)</dt>
+              <dd>Returns a NodeList of elements with under this element with the specified className</dd>
+            </dl>
+            <dl>
+              <dt>getElementsByTagName(tagName)</dt>
+              <dd>Returns a NodeList of elements with under this element with the specified tag</dd>
+            </dl>
+            <p>
+              More at <a target="_blank" href="https://developer.mozilla.org/en/DOM/element">https://developer.mozilla.org/en/DOM/element</a>
+            </p>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>Can I see an example?</h1>
+          </header>
+          <section class="text muchSmallerCode">
+            <pre class="brush: js; toolbar: false;">
+              var div = document.createElement("div");
+              var a = document.createElement("p");
+              a.appendChild(document.createTextNode("Random Stuff"));
+              a.className = "menu";
+              var b = document.createElement("p");
+              b.appendChild(document.createTextNode("More Stuff"));
+              b.setAttribute("class", "tag");
+              var c = document.createElement("span");
+              c.innerHTML = '<p class="name">Some Junk</p><hr/><p>More Junk</p>';
+              div.appendChild(a);
+              div.appendChild(b);
+              div.appendChild(c);
+              c.firstChild.innerHTML = "Random Junk<br/>";
+            </pre>
+            <p>
+              <code><a target="_blank" href="daythree/dombasics.js">presentations/daythree/dombasics.js</a></code>
+            </p>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>What does the example create?</h1>
+          </header>
+          <section class="text muchSmallerCode">
+            <pre class="brush: js; toolbar: false;">
+              var div = document.createElement("div");
+              var a = document.createElement("p");
+              a.appendChild(document.createTextNode("Random Stuff"));
+              a.className = "menu";
+              var b = document.createElement("p");
+              b.appendChild(document.createTextNode("More Stuff"));
+              b.setAttribute("class", "tag");
+              var c = document.createElement("span");
+              c.innerHTML = '<p class="name">Some Junk</p><hr/><p>More Junk</p>';
+              div.appendChild(a);
+              div.appendChild(b);
+              div.appendChild(c);
+              c.firstChild.innerHTML = "Random Junk<br/>";
+            </pre>
+            
+            <pre class="brush: html; toolbar: false;">
+              <div>
+                <p class="menu">Random Stuff</p>
+                <p class="tag">More Stuff</p>
+                <span>
+                  <p class="name">Random Junk<br/></p>
+                  <hr/>
+                  <p>More Junk</p>
+                </span>
+              </div>
+            </pre>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>Workflow</h1>
+          </header>
+          <section class="text">
+            <ol>
+              <li>Create HTML, CSS, and JavaScript files</li>
+              <li>Setup XMLHttpRequest to download the JSON feed</li>
+              <li>If successfully downloaded, parse the JSON</li>
+              <li>Iterate over the <code>rss.channel.item</code> array</li>
+              <li>Use the specified title and description to generate text on the page</li>
+              <li>Use the DOM to create the necessary tags, text, and attributes</li>
+              <li>See how well it fits on a mobile screen</li>
+              <li>Fix styling until it works</li>
+            </ol>
+            <br/>
+            <p>
+              Do I need to do all these steps or will some be done for me?
+            </p>
+            <ul>
+              <li>The first 3 steps are being done for you in <code>river.js</code></li>
+            </ul>
           </section>
         </div>
         
@@ -424,7 +676,7 @@
             </dl>
             <p>
               See the raw JSON at
-              <a href="http://scripting.com/rss.json">http://scripting.com/rss.json</a>
+              <a target="_blank" href="http://scripting.com/rss.json">http://scripting.com/rss.json</a>
             </p>
           </section>
         </div>
@@ -432,7 +684,7 @@
         <div class="slide">
           <div class="bg">
             <section class="middle landing">
-              <h1>Pull headlines from Scripting News JSON River</h1>
+              <h1>Create a mobile-optimized version of Scripting News</h1>
               <h3 class="lab">Lab</h3>
               <p>
                 <a target="_blank" href="../tutorials/golden/3_river_of_news/river.html">Demonstrate</a>
@@ -443,56 +695,118 @@
         
         <div class="slide">
           <header>
+            <h1 class="lab">Why aren't images showing up?</h1>
+          </header>
+          <section class="text center">
+            <img src="images/rss_json.png"/>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1 class="lab">Why aren't images showing up?</h1>
+          </header>
+          <section class="text muchSmallerCode">
+            <p>
+              To replace <code>&amp;quot;</code> you must do:
+              <pre class="brush: js; toolbar: false">
+                var description = item.description;
+                description = description.replace(/&amp;quot;/g, '"');
+              </pre>
+            </p>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <div class="bg">
+            <section class="middle landing">
+              <h1>Create a mobile-optimized version of Scripting News</h1>
+              <h3 class="lab">Lab</h3>
+              <p>
+                <a target="_blank" href="../tutorials/golden/3_river_of_news/river.html">Demonstrate</a>
+              </p>
+            </section>
+          </div>
+        </div>
+        
+        
+        <div class="slide">
+          <div class="bg">
+            <section class="middle landing">
+              <h1>Shopping Cart Item OOP</h1>
+              <h3 class="lab">Lab</h3>
+            </section>
+          </div>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>Requirements</h1>
+          </header>
+          <section class="text">
+            <p>Shopping Cart must support wide variety of items</p>
+            <ul>
+              <li>Name and plot some items</li>
+              <li>Ask for relationships between items</li>
+              <li>Are there any common properties for certain items that can be reused?</li>
+              <li>What properties does every item in the shopping cart have?</li>
+              <li>What functionality should the shopping cart itself have?</li>
+            </ul>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>Item Hierarchy</h1>
+          </header>
+          <section class="text middle center">
+            <br/>
+            <img src="images/shopping_cart_item_hierarchy.png"/>
+            <!--
+            <img src="https://chart.googleapis.com/chart?cht=gv&chs=700x400&chl=graph{item--electronic;item--physical--sized--apparel--shirt;item--nonitem--donation;physical--nonsized--mug;nonsized--watches;nonsized--stickers;apparel--pants;apparel--shoes;apparel--belt;apparel--coat;nonsized--%22ipad%20cover%22}" width="700" height="400"/> -->
+          </section>
+        </div>
+        
+        
+        <div class="slide">
+          <header>
             <h1>OOP &#8212; Why?</h1>
           </header>
           <section class="text">
             <dl>
               <dt>Abstraction</dt>
               <dd>know what something does, don't need to know how</dd>
+              <dd>Shopping cart works off the Item API, doesn't inject properties on each item</dd>
             </dl>
             <dl>
               <dt>Encapsulation</dt>
               <dd>keep others from breaking your code</dd>
+              <dd>Shopping cart doesn't calculate the price or override the price of an Item</dd>
             </dl>
             <dl>
               <dt>Inheritance</dt>
               <dd>re-use existing code, type hierarchy</dd>
+              <dd>All digital media items have no shipping cost, don't need that specified separately for video, audio, etc.</dd>
             </dl>
             <dl>
               <dt>Polymorphism</dt>
               <dd>override methods in inherited subclasses</dd>
+              <dd>Shopping cart calculates total cost via the Item API's price() and multiplies by the quantity, regardless of type</dd>
             </dl>
             <dl>
               <dt>Decoupling</dt>
               <dd>Keep your object dependency graph split up</dd>
+              <dd>Your shirt browser widget only connects to the Item API, not Shopping Cart API</dd>
             </dl>
           </section>
         </div>
         
         <div class="slide">
           <header>
-            <h1>OOP Dependency Graph</h1>
+            <h1>SideNote &#8212; OOP Dependency Graph</h1>
           </header>
           <section class="image center">
             <img src="images/big_ball_of_yarn.jpg" height="540px"/>
-          </section>
-        </div>
-        
-        <div class="slide">
-          <header>
-            <h1>Object Prototype Properties</h1>
-          </header>
-          <section class="text center middle">
-            <img src="images/object_prototype_properties.png" width="800px"/>
-          </section>
-        </div>
-        
-        <div class="slide">
-          <header>
-            <h1>Object Properties</h1>
-          </header>
-          <section class="text center middle">
-            <img src="images/object_properties.png" width="800px"/>
           </section>
         </div>
         
@@ -740,43 +1054,7 @@
             <section class="middle landing">
               <h1>Shopping Cart Item OOP</h1>
               <h3 class="lab">Lab</h3>
-            </section>
-          </div>
-        </div>
-        
-        <div class="slide">
-          <header>
-            <h1>Requirements</h1>
-          </header>
-          <section class="text">
-            <br/>
-            <p>Shopping Cart must support wide variety of items</p>
-            <ul>
-              <li>Name and plot some items</li>
-              <li>Ask for relationships between items</li>
-              <li>Get audience to come up with Class Diagram</li>
-              <li>Implement class diagram in JavaScript</li>
-            </ul>
-          </section>
-        </div>
-        
-        <div class="slide">
-          <header>
-            <h1>Requirements</h1>
-          </header>
-          <section class="text middle center">
-            <br/>
-            <img src="images/shopping_cart_item_hierarchy.png"/>
-            <!--
-            <img src="https://chart.googleapis.com/chart?cht=gv&chs=700x400&chl=graph{item--electronic;item--physical--sized--apparel--shirt;item--nonitem--donation;physical--nonsized--mug;nonsized--watches;nonsized--stickers;apparel--pants;apparel--shoes;apparel--belt;apparel--coat;nonsized--%22ipad%20cover%22}" width="700" height="400"/> -->
-          </section>
-        </div>
-        
-        <div class="slide">
-          <div class="bg">
-            <section class="middle landing">
-              <h1>Shopping Cart Item OOP</h1>
-              <h3 class="lab">Lab</h3>
+              <p>Implement class diagram in JavaScript</p>
             </section>
           </div>
         </div>
