@@ -204,12 +204,16 @@ section.image img:first-child {
 	width: 90%; height: 90%;
 }
 li {
-	list-style: none; padding: 5px 0 5px 20px;line-height: 24px;
+	padding: 5px 0 5px 20px;line-height: 24px;
 	
 /* background-image:url(../images/new_bullet.gif);
 background-position: left 50%;
 background-repeat: no-repeat;*/ 
 }
+ul li {
+  list-style: none;
+}
+
 ul.lots-of-bullets li {
 line-height: 16px;
 }
