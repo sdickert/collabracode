@@ -1,13 +1,13 @@
 var div = document.createElement("div");
 var a = document.createElement("p");
-a.innerText = "Random Stuff";
+a.appendChild(document.createTextNode("Random Stuff"));
 a.className = "menu";
 var b = document.createElement("p");
-b.innerText = "More Stuff";
+b.appendChild(document.createTextNode("More Stuff"));
 b.setAttribute("class", "tag");
 var c = document.createElement("span");
-c.innerHTML = '<p class="name">Some Junk</p><hr><p>More Junk</p>';
+c.innerHTML = '<p class="name">Some Junk</p><hr/><p>More Junk</p>';
 div.appendChild(a);
 div.appendChild(b);
 div.appendChild(c);
-c.firstChild.innerHTML = "Random Junk";
+c.firstChild.innerHTML = "Random Junk<br/>";
