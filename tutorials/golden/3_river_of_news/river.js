@@ -1,11 +1,6 @@
 var REMOTE_URL = "http://collabracode-js.appspot.com/rss.json";
 
 function log(s) {
-  var l = document.getElementById("log");
-  var li = document.createElement("div");
-  li.className = "log-item";
-  setInnerText(li, String(s));
-  l.appendChild(li);
   if(console && console.log) {
     console.log(s);
   }
