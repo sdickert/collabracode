@@ -1,0 +1,712 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+<!--
+  What is jQuery?
+  by adam j. sontag & Josh Kehn
+  WTFPL License
+
+  If you want the cool kid fonts for this preso:
+  http://www.fontsquirrel.com/fontfacedemo/ChunkFive
+  http://www.fontsquirrel.com/fontfacedemo/CartoGothic-Std
+
+  This all refers to the Presentation slides or whatever.
+  vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+
+  Copyright 2010 Google Inc.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+  Original slides: Marcin Wichary (mwichary@google.com)
+  Modifications: Ernest Delgado (ernestd@google.com)
+                 Alex Russell (slightlyoff@chromium.org
+                 Brad Neuberg
+-->
+<html>
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge;chrome=1" />
+    <title>Collabracode JS Day 4</title>
+    <link rel="shortcut icon" href="/images/favicon.ico" />
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon" /> 
+    
+    <link href="css/fonts.css" rel="stylesheet" type="text/css" />
+    <link href="css/main.css" rel="stylesheet" type="text/css" />
+    <link href="css/syntax.css" rel="stylesheet" type="text/css" />
+    <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.6/themes/ui-lightness/jquery-ui.css" rel="stylesheet" type="text/css" />
+
+  </head>
+  <body>
+    <div class="presentation">
+      <div id="presentation-counter"></div>
+      <div class="slides">
+        <div class="slide" id="intro">
+          <div class="bg">
+            <section class="middle landing">
+              <h1>OOP and Event Handling</h1>
+              <h4>Day 4</h4>
+              <h4>by <code>collabraCode('js');</code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h4>
+            </section>
+          </div>
+        </div>
+
+        <div class="slide">
+          <header>
+            <h1>Today&#39;s Agenda</h1>
+          </header>
+          <section class="text">
+            <h2>Today&#39;s Objectives/Labs</h2>
+            <ul>
+              <li>Model shopping cart items</li>
+              <li>Write a calculator</li>
+            </ul>
+            <h2>Topics</h2>
+            <ul>
+              <li>OOP</li>
+              <li>Event Handling</li>
+            </ul>
+          </section>
+        </div>
+        
+        
+        <div class="slide">
+          <div class="bg">
+            <section class="middle landing">
+              <h1>Shopping Cart Item Modeling</h1>
+              <h3 class="lab">Lab</h3>
+            </section>
+          </div>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>Requirements</h1>
+          </header>
+          <section class="text">
+            <p>Shopping Cart must support wide variety of items</p>
+            <ol>
+              <li>Name and plot some items</li>
+              <li>Ask for relationships between items</li>
+              <li>Are there any common properties for certain items that can be reused?</li>
+              <li>What properties does every item in the shopping cart have?</li>
+              <li>What functionality should the shopping cart itself have?</li>
+            </ol>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>Item Hierarchy</h1>
+          </header>
+          <section class="text middle center">
+            <br/>
+            <img src="images/shopping_cart_item_hierarchy.png"/>
+            <!--
+            <img src="https://chart.googleapis.com/chart?cht=gv&chs=700x400&chl=graph{item--electronic;item--physical--sized--apparel--shirt;item--nonitem--donation;physical--nonsized--mug;nonsized--watches;nonsized--stickers;apparel--pants;apparel--shoes;apparel--belt;apparel--coat;nonsized--%22ipad%20cover%22}" width="700" height="400"/> -->
+          </section>
+        </div>
+        
+        
+        <div class="slide">
+          <header>
+            <h1>OOP &#8212; Why?</h1>
+          </header>
+          <section class="text">
+            <dl>
+              <dt>Abstraction</dt>
+              <dd>know what something does, don't need to know how</dd>
+              <dd>Shopping cart works off the Item API, doesn't inject properties on each item</dd>
+            </dl>
+            <dl>
+              <dt>Encapsulation</dt>
+              <dd>keep others from breaking your code</dd>
+              <dd>Shopping cart doesn't calculate the price or override the price of an Item</dd>
+            </dl>
+            <dl>
+              <dt>Inheritance</dt>
+              <dd>re-use existing code, type hierarchy</dd>
+              <dd>All digital media items have no shipping cost, don't need that specified separately for video, audio, etc.</dd>
+            </dl>
+            <dl>
+              <dt>Polymorphism</dt>
+              <dd>override methods in inherited subclasses</dd>
+              <dd>Shopping cart calculates total cost via the Item API's price() and multiplies by the quantity, regardless of type</dd>
+            </dl>
+            <dl>
+              <dt>Decoupling</dt>
+              <dd>Keep your object dependency graph split up</dd>
+              <dd>Your shirt browser widget only connects to the Item API, not Shopping Cart API</dd>
+            </dl>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>SideNote &#8212; OOP Dependency Graph</h1>
+          </header>
+          <section class="text center">
+            <br/>
+            <img src="images/big_ball_of_yarn.jpg" height="540px"/>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>OOP &#8212; Classes</h1>
+          </header>
+          <section class="text muchSmallerCode">
+            <pre class="brush: js; toolbar: false;">
+              var A = function() {}; // creates the class A
+            </pre>
+            <br/>
+            <div class="center">
+              <!--<img src="images/collabracode_oop1.png"/> -->
+              <img src="images/oop_setup.png"/>
+            </div>
+            <!--
+            <div class="center">
+              <img src="https://chart.googleapis.com/chart?cht=gv&chs=500x300&chl=digraph{A->%22prototype%20{constructor:%20A}%22;}" width="500" height="300"/>
+            </div>
+            -->
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>OOP &#8212; Instances</h1>
+          </header>
+          <section class="text muchSmallerCode">
+            <pre class="brush: js; toolbar: false;">
+              var A = function() {};  // class
+              var b = new A();        // instance of A
+              var c = new A();        // instance of A
+            </pre>
+            <br/>
+            <div class="center">
+              <img src="images/oop_instances.png"/>
+              <!-- <img src="images/collabracode_oop2.png"/> -->
+            </div>
+            <!--
+            <div class="center">
+              <img src="https://chart.googleapis.com/chart?cht=gv&chs=500x300&chl=digraph{A->prototype;b->prototype;c->prototype;}" width="500" height="300"/>
+            </div>
+            -->
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>OOP &#8212; Instance Values</h1>
+          </header>
+          <section class="text muchSmallerCode">
+            <pre class="brush: js; toolbar: false;">
+              var A = function(value) {
+                this.value = value;
+              };
+              var b = new A(42);
+              var c = new A("blah");
+            </pre>
+            <br/>
+            <div class="center">
+              <img src="images/oop_instance_variables.png"/>
+              <!-- <img src="images/collabracode_oop3.png"/> -->
+            </div>
+            <!--
+            <div class="center">
+              <img src="https://chart.googleapis.com/chart?cht=gv&chs=800x300&chl=digraph{A->prototype;%22b%20{value:%2042}%22->prototype;%22c%20{value:%20blah}%22->prototype;}" width="800" height="300"/>
+            </div>
+            -->
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>OOP &#8212; Excessive Memory</h1>
+          </header>
+          <section class="text muchSmallerCode">
+            <pre class="brush: js; toolbar: false;">
+              var A = function(value) {
+                this.value = value;
+                this.draw = function() {};
+              };
+              var b = new A(42);
+              var c = new A("blah");
+            </pre>
+            <br/>
+            <div class="center">
+              <img src="images/oop_excessive_memory.png"/>
+              <!-- <img src="images/collabracode_oop4.png"/> -->
+            </div>
+            <!--
+            <div class="center">
+              <img src="https://chart.googleapis.com/chart?cht=gv&chs=800x200&chl=digraph{A->prototype;%22b%20{value:%2042,%20draw:%20function()}%22->prototype;%22c%20{value:%20blah,%20draw:%20function()}%22->prototype;}" width="800" height="200"/>
+            </div>
+            -->
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>OOP &#8212; Single Implementation</h1>
+          </header>
+          <section class="text muchSmallerCode">
+            <pre class="brush: js; toolbar: false;">
+              var A = function(value) { this.value = value; };
+              var b = new A(42);
+              var c = new A("blah");
+              A.prototype.draw = function() {};
+            </pre>
+            <br/>
+            <div class="center">
+              <img src="images/oop_single_implementation.png"/>
+              <!-- <img src="images/collabracode_oop5.png"/> -->
+            </div>
+            <!--
+            <div class="center">
+              <img src="https://chart.googleapis.com/chart?cht=gv&chs=800x350&chl=digraph{A->%22prototype%20{draw:%20function()}%22;%22b%20{value:%2042}%22->%22prototype%20{draw:%20function()}%22;%22c%20{value:%20blah}%22->%22prototype%20{draw:%20function()}%22;}" width="800" height="350"/>
+            </div>
+            -->
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>OOP &#8212; New Base</h1>
+          </header>
+          <section class="text muchSmallerCode">
+            <pre class="brush: js; toolbar: false;">
+              var A = function(value) { this.value = value; };
+              A.prototype.draw = function() {};
+              var b = new A(42);
+              var c = new A("blah");
+              c.y = 2;
+              A.prototype = {"v": 1};
+              var d = new A(7);
+            </pre>
+            <br/>
+            <div class="center">
+              <img src="images/oop_new_base_class.png"/>
+              <!-- <img src="images/collabracode_oop4.png" width="800px"/> -->
+              <!-- <img src="images/collabracode_oop6.png"/> -->
+            </div>
+            <!--
+            <div class="center">
+              <img src="https://chart.googleapis.com/chart?cht=gv&chs=800x200&chl=digraph{%22b%20{value:%2042,%20y:%202}%22->%22prototype%20{draw:%20function()}%22;%22c%20{value:%20blah}%22->%22prototype%20{draw:%20function()}%22;A->%22prototype%20{v%20:%201}%22}" width="800" height="200"/>
+            </div>
+            -->
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>OOP &#8212; Class/Instance Functions</h1>
+          </header>
+          <section class="text muchSmallerCode">
+            <pre class="brush: js; toolbar: false;">
+              b.__proto__.hasOwnProperty("constructor") // true
+              "constructor" in c                        // true
+              for (var i in b.__proto__) alert(i);      // draw
+              c.constructor    // function (value) { this.value = value; }
+              c instanceof A   // false
+              d instanceof A   // true
+              d.constructor    // function Object() { [native code] }
+            </pre>
+            <br/>
+            <div class="center">
+              <img src="images/oop_new_base_class.png"/>
+              <!-- <img src="images/collabracode_oop6.png"/> -->
+            </div>
+            <!--
+            <div class="center">
+              <img src="https://chart.googleapis.com/chart?cht=gv&chs=800x200&chl=digraph{%22b%20{value:%2042,%20y:%202}%22->%22prototype%20{draw:%20function()}%22;%22c%20{value:%20blah}%22->%22prototype%20{draw:%20function()}%22;A->%22prototype%20{v%20:%201}%22}" width="800" height="200"/>
+            </div>
+            -->
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>OOP &#8212; Example</h1>
+          </header>
+          <section class="text muchSmallerCode">
+            <pre class="brush: js; toolbar: false;">
+              var Calculator = function(a, b) {
+                  this.a = Number(a || 0);  // always ensure inputs are the right types
+                  this.b = Number(b || 0);  // best to ensure before storing in a class
+              };
+
+              Calculator.prototype.add  = function() {
+                return this.a + this.b;
+              };
+              Calculator.prototype.sub  = function() {
+                return this.a - this.b;
+              };
+              Calculator.prototype.mult = function() {
+                return this.a * this.b;
+              };
+              Calculator.prototype.div  = function() {
+                return this.a / this.b;
+              };
+
+              var calc = new Calculator("7", 6); // -> new instance
+              var ultimateAnswer = calc.mult();  // -> 42
+              var unlucky = calc.add();          // -> 13
+            </pre>
+            <p>
+              <code><a target="_blank" href="dayfour/calculator.js">presentations/dayfour/calculator.js</a></code>
+            </p>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>OOP &#8212; Prototype Inheritance</h1>
+          </header>
+          <section class="text muchSmallerCode">
+            <pre class="brush: js; toolbar: false;">
+              var AdvCalculator = function(a, b) {
+                  this.base = Calculator;
+                  this.base(a, b);
+              };
+              
+              AdvCalculator.prototype = new Calculator();
+              AdvCalculator.prototype.constructor = AdvCalculator;
+              AdvCalculator.prototype.logn = function() {
+                  return Math.log(this.a) / Math.log(this.b);
+              };
+              
+              AdvCalculator.prototype.pow = function() {
+                  return Math.pow(this.a, this.b);
+              };
+              
+              var calc = new AdvCalculator("7", 6); // -> new instance
+              var ultimateAnswer = calc.mult();     // -> 42
+              var largeNumber = calc.pow();         // -> 117649
+            </pre>
+            <p>
+              <code><a target="_blank" href="dayfour/advcalculator.js">presentations/dayfour/advcalculator.js</a></code>
+            </p>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <div class="bg">
+            <section class="middle landing">
+              <h1>Shopping Cart Item Modeling</h1>
+              <h3 class="lab">Lab</h3>
+              <p>Implement class diagram in JavaScript</p>
+            </section>
+          </div>
+        </div>
+        
+        <div class="slide">
+          <div class="bg">
+            <section class="middle landing">
+              <h1>Write a Calculator</h1>
+              <h3 class="lab">Lab</h3>
+              <a target="_blank" href="../tutorials/golden/4_calculator/calculator.html">Demo</a>
+            </section>
+          </div>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>Event Handlers &#8212; Bubbling</h1>
+          </header>
+          <section class="text">
+            <br/>
+            <ul>
+              <li>Callbacks executed whenever an event is bubbled up.</li>
+              <li>Events bubble up from an element all the way up to the body</li>
+              <li>Return <code>false</code> in handler to stop propagation/bubbling</li>
+              <li>Add/remove/override event handlers for any element on the page</li>
+              <li>Completely Asynchronous &#8212; Set it and it'll fire later</li>
+            </ul>
+            <br/>
+            <p>
+              <a target="_blank" href="http://jsfiddle.net/qq3X9/">Demonstrate</a><br/>
+            </p>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>Event Handlers &#8212; Common</h1>
+          </header>
+          <section class="text">
+            <ul>
+              <li>onload</li>
+              <li>onunload</li>
+              <li>onclick</li>
+              <li>onsubmit</li>
+              <li>onfocus</li>
+              <li>onblur</li>
+              <li>onchange</li>
+              <li>onmouseover</li>
+              <li>onmouseout</li>
+              <li>onmousedown</li>
+              <li>onmouseup</li>
+            </ul>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>Event Handlers &#8212; Bad Way</h1>
+          </header>
+          <section class="text muchSmallerCode">
+            <br/>
+            <p>
+              Inline event handler
+            </p>
+            <pre class="brush: html; toolbar: false;">
+              <a href="http://google.com"  onclick="alert('hello!')">Google</a>
+            </pre>
+            <br/>
+            <p>
+              Great for debugging
+              never use in real life...if you want your sanity
+            </p>
+            <p>
+              Overriding all handlers on an element
+            </p>
+            <pre class="brush: js; toolbar: false;">
+              elem.onclick = handler;
+            </pre>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>Event Handlers</h1>
+          </header>
+          <section class="text muchSmallerCode">
+            <br/>
+            <p>
+              Adding Event Handlers
+            </p>
+            <pre class="brush: js; toolbar: false;">
+              // taken from 
+              // http://www.onlinetools.org/articles/unobtrusivejavascript/chapter4.html
+              function addEvent(obj, evType, fn) {
+                if (obj.addEventListener) {   // standards-compliant browsers
+                  obj.addEventListener(evType, fn, false);
+                  return true;
+                } else if (obj.attachEvent) { // IE
+                  var r = obj.attachEvent("on"+evType, fn);
+                  return r;
+                } else {
+                  return false;
+                }
+              }
+            </pre>
+            <br/>
+            <p>
+              Always reuse an existing library, don't write this from scratch!
+            </p>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>Event Types</h1>
+          </header>
+          <section class="text">
+            <br/>
+            <ul>
+              <li>Form Events</li>
+              <li>Image Events</li>
+              <li>Image Map Events</li>
+              <li>Link Events</li>
+              <li>Window Events</li>
+              <li>Keyboard Events</li>
+              <li>Mouse Events</li>
+            </dl>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>Event Handlers &#8212; Properties</h1>
+          </header>
+          <section class="text left">
+            <br/>
+            <dl>
+              <dt>Event Type</dt>
+              <dd>type</dd>
+            </dl>
+            <br/>
+            <div>Possible Properties</div>
+            <dl>
+              <dt>DOM Element</dt>
+              <dd>srcElement &#8212; IE</dd>
+              <dd>target &#8212; non-IE</dd>
+            </dl>
+            <br/>
+            <dl>
+              <dt>Keyboard Event</dt>
+              <dd>keyCode</dd>
+              <dd>which</dd>
+            </dl>
+          </section>
+          <section class="text right">
+            <br/>
+            <dl>
+              <dt>Mouse Event</dt>
+              <dd>clientX</dd>
+              <dd>clientY</dd>
+              <dd>layerX</dd>
+              <dd>layerY</dd>
+              <dd>offsetX</dd>
+              <dd>offsetY</dd>
+              <dd>pageX</dd>
+              <dd>pageY</dd>
+              <dd>screenX</dd>
+              <dd>screenY</dd>
+              <dd>x</dd>
+              <dd>y</dd>
+            </dl>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>Event Ordering</h1>
+          </header>
+          <section class="text">
+            <br/>
+            <div class="center">
+              <img src="images/google.png"/>
+            </div>
+            <p>
+              Assume textbox = <code>document.activeElement</code>
+            </p>
+            <p>
+              If you click on Google Search
+            </p>
+            <ul>
+              <li><code>onblur</code> -&gt; text box</li>
+              <li><code>onfocus</code> -&gt; button</li>
+              <li><code>onclick</code> -&gt; button</li>
+            </ul>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <div class="bg">
+            <section class="middle landing">
+              <h1>Write a Calculator</h1>
+              <h3 class="lab">Lab</h3>
+              <a target="_blank" href="../tutorials/golden/4_calculator/calculator.html">Demo</a>
+            </section>
+          </div>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1 class="lab">File Layout</h1>
+          </header>
+          <section class="text">
+            <dl>
+              <dt><code>calculator.html</code></dt>
+              <dd>HTML Scaffolding, includes basic instructions, references all other files</dd>
+            </dl>
+            <dl>
+              <dt><code>calculator.css</code></dt>
+              <dd>CSS Styling of elements</dd>
+            </dl>
+            <dl>
+              <dt><code>util.js</code></dt>
+              <dd>Contains general utility functions you might find useful</dd>
+            </dl>
+            <dl>
+              <dt><code>calculator.js</code></dt>
+              <dd>Provides some basic helper functions you might find useful</dd>
+            </dl>
+            <dl>
+              <dt><code>student_calculator.js</code></dt>
+              <dd>
+                File you'll be implementing calculator implementation.<br/>
+              </dd>
+            </dl>
+            <br/>
+            <p>
+              <a href="../tutorials/students/4_calculator/">tutorials/students/4_calculator/</a>
+            </p>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>Workflow/Checkpoints</h1>
+          </header>
+          <section class="text">
+            <ol>
+              <li>Add click handler for each button on the calculator</li>
+              <li>Display numbers when number button pressed</li>
+              <li>Store current value in JavaScript variable</li>
+              <li>Store current operation (+, -, *, /) in JavaScript variable</li>
+              <li>Connect up operators (+, -, *, /, =) with appropriate logic</li>
+              <li>Ensure after arithmetic operators pressed and a number is pressed, only the number is shown</li>
+              <li>Add in Clear and negate capability</li>
+              <li>Add in special handling for decimal point (".")</li>
+              <li>Add M+, M-, MR, MC capability</li>
+            </ol>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <div class="bg">
+            <section class="middle landing">
+              <h1>Write a Calculator</h1>
+              <h3 class="lab">Lab</h3>
+              <a target="_blank" href="../tutorials/golden/4_calculator/calculator.html">Demo</a>
+            </section>
+          </div>
+        </div>
+
+      <!-- slides -->
+
+    </div> <!-- presentation -->
+    <!--[if lt IE 9]>
+    <script
+    src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">
+    </script>
+    <script>CFInstall.check({ mode: "overlay" });</script>
+    <![endif]-->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+    <script type="text/javascript" src="js/slideshow.js"></script>
+    <script type="text/javascript">
+      function getInnerText(elem) {
+        if(typeof elem.innerText == "undefined") {
+          return elem.textContent;
+        }
+        return elem.innerText;
+      }
+      function setInnerText(elem, value) {
+        if(typeof elem.innerText == "undefined") {
+          elem.textContent = value;
+        } else {
+          elem.innerText = value;
+        }
+      }
+      function stringify(value) {
+        if(typeof value == "string") {
+          return "\"" + value + "\"";
+        }
+        if(typeof value == "object") {
+          return JSON.stringify(value);
+        }
+        return String(value);
+      }
+    </script>
+  </body>
+</html>
