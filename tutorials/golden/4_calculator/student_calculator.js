@@ -157,6 +157,7 @@ function numberPressed(text) {
 function decimalPointPressed() {
   if(getInnerText(getDisplayElem()).indexOf(".") == -1) {
     setDisplayAsText(getDisplayAsText() + ".");
+    clearOnNextEntry = false;
   }
 }
 
