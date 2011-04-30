@@ -1,0 +1,512 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+<!--
+  What is jQuery?
+  by adam j. sontag & Josh Kehn
+  WTFPL License
+
+  If you want the cool kid fonts for this preso:
+  http://www.fontsquirrel.com/fontfacedemo/ChunkFive
+  http://www.fontsquirrel.com/fontfacedemo/CartoGothic-Std
+
+  This all refers to the Presentation slides or whatever.
+  vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+
+  Copyright 2010 Google Inc.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+  Original slides: Marcin Wichary (mwichary@google.com)
+  Modifications: Ernest Delgado (ernestd@google.com)
+                 Alex Russell (slightlyoff@chromium.org
+                 Brad Neuberg
+-->
+<html>
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge;chrome=1" />
+    <title>Selectors and Events</title>
+    <link rel="shortcut icon" href="/images/favicon.ico" />
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon" /> 
+    
+    <link href="css/fonts.css" rel="stylesheet" type="text/css" />
+    <link href="css/main.css" rel="stylesheet" type="text/css" />
+    <link href="css/syntax.css" rel="stylesheet" type="text/css" />
+    <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.6/themes/ui-lightness/jquery-ui.css" rel="stylesheet" type="text/css" />
+
+  </head>
+  <body>
+    <div class="presentation">
+      <div id="presentation-counter"></div>
+      <div class="slides">
+        <div class="slide" id="intro">
+          <div class="bg">
+            <section class="middle landing">
+              <h1>Selectors and Events</h1>
+              <h4>Day 3</h4>
+              <h4>by <code>collabraCode('js');</code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h4>
+            </section>
+            </div>
+        </div>
+
+        <div class="slide">
+          <header>
+            <h1>Today&#39;s Agenda</h1>
+          </header>
+          <section class="text">
+            <br/>
+            <dl>
+              <dt>Today&#39;s Objectives</dt>
+              <dd>Traverse the DOM easily</dd>
+              <dd>Handle events</dd>
+            </dl>
+            <br/>
+            <dl>
+              <dt>Topics</dt>
+              <dd>DOM Selectors</dd>
+              <dd>Event Handlers</dd>
+            </dl>
+            <br/>
+            <dl>
+              <dt>Lab</dt>
+              <dd>Modify your favorite site with DOM Selectors</dd>
+              <dd>Create a Calculator</dd>
+            </dl>
+          </section>
+        </div>
+		
+        <div class="slide">
+          <header>
+            <h1>DOM Selectors &#8212; Functions</h1>
+          </header>
+          <section class="text">
+            <br/>
+            <p>
+              <a href="http://www.w3.org/TR/selectors-api/" target="_blank">http://www.w3.org/TR/selectors-api/</a>
+            </p>
+            <dl>
+              <dt>document.querySelector("somestring")</dt>
+              <dd>Element or null</dd>
+            </dl>
+            <dl>
+              <dt>document.querySelectorAll("somestring")</dt>
+              <dd>NodeList</dd>
+            </dl>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>DOM Selectors</h1>
+          </header>
+          <section class="text">
+            <br/>
+            <dl>
+              <dt>body p</dt>
+              <dd>All paragraphs inside body</dd>
+            </dl>
+            <dl>
+              <dt>ul.nav &gt; li</dt>
+              <dd>All &lt;li&gt; elements directly under a &lt;ul&gt; tag that has "nav" class</dd>
+            </dl>
+            <dl>
+              <dt>#bar, #foo</dt>
+              <dd>Any element with id "bar" or id "foo"</dd>
+            </dl>
+            <dl>
+              <dt>.alpha + .beta</dt>
+              <dd>Any element with class "beta" directly after a sibling with class "alpha"</dd>
+            </dl>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>DOM Selectors &#8212; Psuedoclasses</h1>
+          </header>
+          <section class="text">
+            <br/>
+            <ul>
+              <li>:visited</li>
+              <li>:first-child</li>
+              <li>:last-child</li>
+              <li>:nth-child(n)</li>
+              <li>:lang</li>
+              <li>:link</li>
+              <li>:focus</li>
+              <li>:hover</li>
+              <li>:active</li>
+              <li>[foo="bar"]</li>
+            </ul>
+            <p>
+              <a href="http://www.w3.org/TR/css3-selectors/" target="_blank">http://www.w3.org/TR/css3-selectors/</a>
+            </p>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>DOM Selectors &#8212; Pitfalls</h1>
+          </header>
+          <section class="text">
+            <br/>
+            <ul>
+              <li>Does not work before IE 8</li>
+              <li>Stick to Firefox and Webkit</li>
+              <li>JQuery supports all browsers</li>
+              <li>JQuery adds many of its own selectors</li>
+            </ul>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <div class="bg">
+            <section class="middle landing">
+              <h1>Modify your favorite site using DOM Selector</h1>
+              <h3>Lab</h3>
+            </section>
+          </div>
+        </div>
+        
+        <div class="slide">
+          <div class="bg">
+            <section class="middle landing">
+              <h1>Modify your favorite site to make it single-column readable</h1>
+              <h3>Lab</h3>
+            </section>
+          </div>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>Event Handlers &#8212; Bubbling</h1>
+          </header>
+          <section class="text">
+            <br/>
+            <ul>
+              <li>Callbacks executed whenever an event is bubbled up.</li>
+              <li>Events bubble up from an element all the way up to the body</li>
+              <li>Return false in handler to stop propagation/bubbling</li>
+              <li>Add/remove/override event handlers for any element on the page</li>
+              <li>Completely Asynchronous &#8212; Set it and it'll fire later</li>
+            </ul>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>Event Handlers &#8212; Bubbling</h1>
+          </header>
+          <section class="text">
+            <br/>
+            <div id="british-status">
+              <span class="british-status">Status:</span>
+              <div id="british-current">
+                <span class="british-status">Currently:</span>
+                <div id="british-watcher">
+                  <span class="british-status"></span>
+                  <button id="british-british">Send the Brits</button>
+                </div>
+              </div>
+            </div>
+            <p>Available at <a href="http://jsfiddle.net/qq3X9/" target="_blank">http://jsfiddle.net/qq3X9/</a></p>
+          </section>
+          <style type="text/css">
+            .british-status
+            {
+                font-weight: bold;
+                text-decoration: underline;
+                text-align: center;
+            }
+            #british-status
+            {
+                width: 500px;
+                height: 250px;
+                border: 1px solid black;
+            }
+            #british-current, #british-watcher
+            {
+                margin: 20px;
+                padding: 10px;
+            }
+            #british-current
+            {
+                border: 1px solid red;
+            }
+            #british-watcher
+            {
+                border: 1px solid green;
+            }
+          </style>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>Event Handlers &#8212; Common</h1>
+          </header>
+          <section class="text">
+            <ul>
+              <li>onload</li>
+              <li>onunload</li>
+              <li>onclick</li>
+              <li>onsubmit</li>
+              <li>onfocus</li>
+              <li>onblur</li>
+              <li>onchange</li>
+              <li>onmouseover</li>
+              <li>onmouseout</li>
+            </ul>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>Event Handlers &#8212; Bad Way</h1>
+          </header>
+          <section class="text muchSmallerCode">
+            <br/>
+            <p>
+              Inline event handler
+            </p>
+            <pre class="brush: html; toolbar: false;">
+              <a href="http://google.com"  onclick="alert('hello!')">Google</a>
+            </pre>
+            <br/>
+            <p>
+              Great for debugging
+              never use in real life...if you want your sanity
+            </p>
+            <p>
+              Overriding all handlers on an element
+            </p>
+            <pre class="brush: js; toolbar: false;">
+              elem.onclick = handler;
+            </pre>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>Event Handlers</h1>
+          </header>
+          <section class="text muchSmallerCode">
+            <br/>
+            <p>
+              Adding Event Handlers
+            </p>
+            <pre class="brush: js; toolbar: false;">
+              // taken from 
+              // http://www.onlinetools.org/articles/unobtrusivejavascript/chapter4.html
+              function addEvent(obj, evType, fn) {
+                if (obj.addEventListener) {   // standards-compliant browsers
+                  obj.addEventListener(evType, fn, false);
+                  return true;
+                } else if (obj.attachEvent) { // IE
+                  var r = obj.attachEvent("on"+evType, fn);
+                  return r;
+                } else {
+                  return false;
+                }
+              }
+            </pre>
+            <br/>
+            <p>
+              Always reuse an existing library, don't write this from scratch!
+            </p>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>Event Types</h1>
+          </header>
+          <section class="text">
+            <br/>
+            <ul>
+              <li>Form Events</li>
+              <li>Image Events</li>
+              <li>Image Map Events</li>
+              <li>Link Events</li>
+              <li>Window Events</li>
+              <li>Keyboard Events</li>
+              <li>Mouse Events</li>
+            </dl>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>Event Handlers &#8212; Properties</h1>
+          </header>
+          <section class="text left">
+            <br/>
+            <dl>
+              <dt>Event Type</dt>
+              <dd>type</dd>
+            </dl>
+            <br/>
+            <div>Possible Properties</div>
+            <dl>
+              <dt>DOM Element</dt>
+              <dd>srcElement &#8212; IE</dd>
+              <dd>target &#8212; non-IE</dd>
+            </dl>
+            <br/>
+            <dl>
+              <dt>Keyboard Event</dt>
+              <dd>keyCode</dd>
+              <dd>which</dd>
+            </dl>
+          </section>
+          <section class="text right">
+            <br/>
+            <dl>
+              <dt>Mouse Event</dt>
+              <dd>clientX</dd>
+              <dd>clientY</dd>
+              <dd>layerX</dd>
+              <dd>layerY</dd>
+              <dd>offsetX</dd>
+              <dd>offsetY</dd>
+              <dd>pageX</dd>
+              <dd>pageY</dd>
+              <dd>screenX</dd>
+              <dd>screenY</dd>
+              <dd>x</dd>
+              <dd>y</dd>
+            </dl>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>Data Structures &#8212; NodeList</h1>
+          </header>
+          <section class="text muchSmallerCode">
+            <br/>
+            <p>
+              Retrieved from DOM when looking for any list of elements
+            </p>
+            <pre class="brush: js; toolbar: false;">
+              // Iterate
+              var list = elem.childNodes;
+              for (var i=0; i&lt;list.length; i++) {
+                var node = list.item(i);
+                // do stuff
+              }
+            </pre>
+            <br/>
+            <pre class="brush: js; toolbar: false;">
+              // Slight optimization
+              var list = elem.childNodes;
+              for (var i=0, len=list.length; i&lt;len; i++) {
+                ...
+              }
+            </pre>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>Event Ordering</h1>
+          </header>
+          <section class="text">
+            <br/>
+            <div class="center">
+              <img src="images/google.png"/>
+            </div>
+            <p>
+              Assume textbox = document.activeElement 
+            </p>
+            <p>
+              If you click on Google Search
+            </p>
+            <ul>
+              <li>onblur -&gt; text box</li>
+              <li>onfocus -&gt; button</li>
+              <li>onclick -&gt; button</li>
+            </ul>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <div class="bg">
+            <section class="middle landing">
+              <h1>Write a Calculator</h1>
+              <h3>Lab</h3>
+            </section>
+          </div>
+        </div>
+        
+      <!-- slides -->
+
+    </div> <!-- presentation -->
+    <!--[if lt IE 9]>
+    <script
+    src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">
+    </script>
+    <script>CFInstall.check({ mode: "overlay" });</script>
+    <![endif]-->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+    <script type="text/javascript" src="js/slideshow.js"></script>
+    <script type="text/javascript">
+      function getInnerText(elem) {
+        if(typeof elem.innerText == "undefined") {
+          return elem.textContent;
+        }
+        return elem.innerText;
+      }
+      function setInnerText(elem, value) {
+        if(typeof elem.innerText == "undefined") {
+          elem.textContent = value;
+        } else {
+          elem.innerText = value;
+        }
+      }
+      function stringify(value) {
+        if(typeof value == "string") {
+          return "\"" + value + "\"";
+        }
+        if(typeof value == "object") {
+          return JSON.stringify(value);
+        }
+        return String(value);
+      }
+    </script>
+    <script type="text/javascript">
+      $(function () {
+        $("#british-status").bind("click", function() {
+            setTimeout(function() {
+                $("#british-status").children(".british-status").text("Status: Drinking Tea!");
+            }, 2000);
+        });
+        
+        $("#british-current").bind("click", function() {
+            setTimeout(function() {
+                $("#british-current").children(".british-status").text("Currently: Running!");
+            }, 1000);
+        });
+        
+        $("#british-watcher").bind("click", function() {
+            setTimeout(function() {
+                $("#british-watcher").children(".british-status").text("British Spotted!");
+            }, 500);
+        });
+        
+        $("#british-british").bind("click", function() {
+            $(this).text("Brits sent!");
+            $(this).attr("disabled", true);
+        });
+      });
+    </script>
+  </body>
+</html>

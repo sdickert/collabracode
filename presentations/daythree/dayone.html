@@ -1,0 +1,1338 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+<!--
+  What is jQuery?
+  by adam j. sontag & Josh Kehn
+  WTFPL License
+
+  If you want the cool kid fonts for this preso:
+  http://www.fontsquirrel.com/fontfacedemo/ChunkFive
+  http://www.fontsquirrel.com/fontfacedemo/CartoGothic-Std
+
+  This all refers to the Presentation slides or whatever.
+  vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+
+  Copyright 2010 Google Inc.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+  Original slides: Marcin Wichary (mwichary@google.com)
+  Modifications: Ernest Delgado (ernestd@google.com)
+                 Alex Russell (slightlyoff@chromium.org
+                 Brad Neuberg
+-->
+<html>
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge;chrome=1" />
+    <title>Introduction to JavaScript</title>
+    <link rel="shortcut icon" href="/images/favicon.ico" />
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon" /> 
+    
+    <link href="css/fonts.css" rel="stylesheet" type="text/css" />
+    <link href="css/main.css" rel="stylesheet" type="text/css" />
+    <link href="css/syntax.css" rel="stylesheet" type="text/css" />
+    <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.6/themes/ui-lightness/jquery-ui.css" rel="stylesheet" type="text/css" />
+
+  </head>
+  <body>
+    <div class="presentation">
+      <div id="presentation-counter"></div>
+      <div class="slides">
+        <div class="slide" id="intro">
+          <div class="bg">
+            <section class="middle landing">
+              <h1>Introduction to JavaScript</h1>
+              <h4>Day 1</h4>
+              <h4>by <code>collabraCode('js');</code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h4>
+            </section>
+          </div>
+        </div>
+
+        <div class="slide">
+          <header>
+            <h1>Who are we?</h1>
+          </header>
+          <section class="text">
+            <h2>Trainers</h2>
+			<ul>
+              <li>Sanford Dickert</li>
+              <li>Joshua Kehn</li>
+              <li>Aalok Shah</li>
+              <li>Wilkins Fernandez</li>
+            </ul>
+          </section>
+        </div>
+		
+        <div class="slide">
+          <header>
+            <h1>Javascript Objectives</h1>
+          </header>
+          <section class="text">
+            <ul>
+              <li>Read/Understand JavaScript</li>
+              <li>Write JavaScript</li>
+              <li>Debug JavaScript</li>
+              <li>Use proper Source Code Management</li>
+              <li>Learn Best Practices</li>
+              <li>Learn JavaScript Gotchas</li>
+              <li>Have a repository of code you've developed publicly available</li>
+              <li>Convert Web-1.0 site to Web-2.0</li>
+              <li>Your own projects</li>
+            </ul>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>What is JavaScript?</h1>
+          </header>
+          <section class="text">
+            <h2>Typed Language</h2>
+			<ul>
+              <li>Every object has a type</li>
+            </ul>
+            <h2>Runtime Environment</h2>
+			<ul>
+              <li>Browser</li>
+              <li>node.js</li>
+              <li>Rhino</li>
+            </ul>
+            <h2>Dynamic Language</h2>
+			<ul>
+				<li>No static typing</li>
+              <li>No compilation step required</li>
+              <li>Run-time errors for issues that are compile-time errors in other languages (like Java)</li>
+            </dl>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>Web-1.0 Shopping Cart</h1>
+          </header>
+          <section class="image">
+            <img src="images/shoppingcart-web1.0.png"/>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>Web-2.0 Shopping Cart</h1>
+          </header>
+          <section class="image">
+            <img src="images/shoppingcart-web1.0.png"/>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>Today&#39;s Agenda</h1>
+          </header>
+          <section class="text">
+			<h2>Today&#39;s Objectives</h2>
+			<ul>
+              <li>Standardize Vocabulary</li>
+              <li>Read/Understand procedural JavaScript</li>
+              <li>Write procedural JavaScript</li>
+            </ul>
+            <h2>Topics</h2>
+            <ul class="two-cols">
+              <li>Tools</li>
+              <li>Hello World Examples</li>
+              <li>Types, Conversions, Syntax</li>
+              <li>Control Flow</li>
+              <li>Functions</li>
+              <li>console.log() Lab</li>
+              <li>Testing</li>
+              <li>Scoping</li>
+              <li>DOM Introduction</li>
+              <li>Sorting Lab</li>
+              <li>Resources</li>
+            </ul>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>Tools</h1>
+          </header>
+          <section class="text">
+			<h2>Web Browser</h2>
+            <ul>
+             <li>Firefox</li>
+              <li>Chrome</li>
+              <li>NOT Internet Explorer</li>
+            </ul>
+			<h2>Text Editor</h2>
+            <ul>
+               <li>TextMate</li>
+            </ul>
+ 			<h2>Debuggers</h2>
+           <ul>
+              <li>Firebug in Firefox</li>
+              <li>Developer Tools in WebKit browsers</li>
+            </ul>
+			<h2>Source Code Management</h2>
+            <ul>
+              <li>GitHub</li>
+            </ul>
+			<h2>Testing</h2>
+            <ul>
+              <li>JSUnit</li>
+            </ul>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>Chrome Developer Tools</h1>
+          </header>
+          <section class="image center">
+            <img src="images/chrome.png"/>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>Chrome Developer Tools</h1>
+          </header>
+          <section class="image center">
+            <img src="images/chrome2.png"/>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>Lab: Github &#8212; Setup</h1>
+          </header>
+          <section class="text smallerCode">
+            <ul>
+              	<li>Everyone setup a github account: 
+              <a href="https://github.com/">https://github.com/</a></li>
+            	<li>On your machine:</li>
+            <pre class="brush: js; toolbar: false;">
+              ssh-keygen -t rsa -C "your_email@youremail.com"
+            </pre>
+            	<li>Copy <code>~/.ssh/id_rsa.pub</code> to your github SSH Keys</li>
+              	<li>Click fork at <a href="https://github.com/sdickert/collabracode">https://github.com/sdickert/collabracode</a></li>
+              <li>Open terminal/command prompt</li>
+              <li>Change directory to your desired location</li>
+              <li>On your machine:</li>
+            <pre class="brush: js; toolbar: false;">
+              git config --global user.name "FirstName LastName"
+              git config --global user.email "your_email@youremail.com"
+              git clone git@github.com:&lt;username&gt;/collabracode.git
+            </pre>
+			</ul>
+			<p style="text-align:right;">You are now set up for github</p>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <div class="bg">
+            <section class="middle landing">
+              <h1>Hello World Examples</h1>
+            </section>
+          </div>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>HTML Scaffolding for JavaScript</h1>
+          </header>
+          <section class="text muchSmallerCode">
+            <pre class="brush: html; toolbar: false;">
+              &lt;?xml version="1.0" encoding="utf-8"?&gt;
+              &lt;!DOCTYPE html&gt;
+              &lt;html&gt;
+                &lt;head&gt;
+                  &lt;title&gt;Welcome to Javascript/JQuery&lt;/title&gt;
+                &lt;/head&gt;
+                &lt;body&gt;
+                  &lt;h1&gt;Welcome to Javascript/JQuery&lt;/h1&gt;
+                  &lt;div id="msg" class="summary"&gt;&lt;/div&gt;
+                  &lt;script type="text/javascript"&gt;
+                    &lt;!-- Insert code Here --&gt;
+                  &lt;/script&gt;
+                &lt;/body&gt;
+              &lt;/html&gt;              
+            </pre>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>Hello World</h1>
+          </header>
+          <section class="text muchSmallerCode">
+            <pre class="brush: html; toolbar: false;">
+              &lt;?xml version="1.0" encoding="utf-8"?&gt;
+              &lt;!DOCTYPE html&gt;
+              &lt;html&gt;
+                &lt;head&gt;
+                  &lt;title&gt;Welcome to Javascript/JQuery&lt;/title&gt;
+                &lt;/head&gt;
+                &lt;body&gt;
+                  &lt;h1&gt;Welcome to Javascript/JQuery&lt;/h1&gt;
+                  &lt;div id="msg" class="summary"&gt;&lt;/div&gt;
+                  &lt;script type="text/javascript"&gt;
+                    alert("Hello World");
+                  &lt;/script&gt;
+                &lt;/body&gt;
+              &lt;/html&gt;              
+            </pre>
+            <p>
+              <a href="dayone/helloworld1.html">Demonstrate</a>
+            </p>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>More Hello World</h1>
+          </header>
+          <section class="text muchSmallerCode">
+            <pre class="brush: html; toolbar: false;">
+              &lt;?xml version="1.0" encoding="utf-8"?&gt;
+              &lt;!DOCTYPE html&gt;
+              &lt;html&gt;
+                &lt;head&gt;
+                  &lt;title&gt;Welcome to Javascript/JQuery&lt;/title&gt;
+                &lt;/head&gt;
+                &lt;body&gt;
+                  &lt;h1&gt;Welcome to Javascript/JQuery&lt;/h1&gt;
+                  &lt;div id="msg" class="summary"&gt;&lt;/div&gt;
+                  &lt;script type="text/javascript"&gt;
+                    document.write("Hello New York City");
+                  &lt;/script&gt;
+                &lt;/body&gt;
+              &lt;/html&gt;              
+            </pre>
+            <p>
+              <a href="dayone/helloworld2.html">Demonstrate</a>
+            </p>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>More Complex Hello World</h1>
+          </header>
+          <section class="text muchMuchSmallerCode">
+            <pre class="brush: html; toolbar: false;">
+              &lt;?xml version="1.0" encoding="utf-8"?&gt;
+              &lt;!DOCTYPE html&gt;
+              &lt;html&gt;
+                &lt;head&gt;
+                  &lt;title&gt;Welcome to Javascript/JQuery&lt;/title&gt;
+                &lt;/head&gt;
+                &lt;body onload="helloWorld();"&gt;
+                  &lt;h1&gt;Welcome to Javascript/JQuery&lt;/h1&gt;
+                  &lt;div id="msg" class="summary"&gt;&lt;/div&gt;
+                  &lt;script type="text/javascript"&gt;
+                    function addText(str) {
+                      var obj = document.createTextNode(str);
+                      document.getElementById("msg").appendChild(obj);
+                    }
+                    function helloWorld() {
+                      var message = "Hello Attendees";
+                      addText(message);
+                    }
+                    document.write("Hello New York City&lt;br/&gt;");
+                  &lt;/script&gt;
+                &lt;/body&gt;
+              &lt;/html&gt;</pre>
+            <p>
+              <a href="dayone/helloworld3.html">Demonstrate</a>
+            </p>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>Types</h1>
+          </header>
+          <section class="text">
+			<p>Types are <em>(Aalok to fill in a single line)....</em></p>
+			<p>Examples include:</p>
+            <ul>
+              <li>undefined - <em>definition of undefined</em></li>
+              <li>null - <em>definition of undefined</em></li>
+              <li>boolean - <em>used to record a value of either true or false. Internally stored as 1 for true and 0 for false.</em></li>
+              <li>number - <em>holds any type of number, either an integer or a real number.</em></li>
+              <li>string - <em>stores a string of characters, typically making up either a word or sentence. string variables can also be assigned empty strings.</em></li>
+              <li>object - <em>JavaScript provides a set of predefined objects to which the JavaScript programmer has access.</em></li>
+              <li>function - <em>used to organize functionality into clean, reusable modules that can be accessed from any other JavaScript to perform specific tasks.</em></li>
+            </ul>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>Types &#8212; typeof x</h1>
+          </header>
+          <section class="text">
+			<p><code>typeof()</code> allows you to probe the data type of its operand, such as whether a variable is string, numeric, or even undefined.</p>
+            <ul class="two-cols">
+ 				<li><strong>type</strong></li>
+             	<li>undefined</li>
+				<li>null</li>
+              <li>boolean</li>
+              <li>number</li>
+              <li>string</li>
+              <li>object</li>
+              <li>array</li>
+              <li>function</li>
+				<li><strong><code>typeof(x)</code></strong></li>
+              <li>&quot;undefined&quot;</li>
+              <li>&quot;object&quot;</li>
+              <li>&quot;boolean&quot;</li>
+              <li>&quot;number&quot;</li>
+              <li>&quot;string&quot;</li>
+              <li>&quot;object&quot;</li>
+              <li>&quot;object&quot;</li>
+              <li>&quot;function&quot;</li>
+            </ul>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>Type Conversions &#8212; Boolean(x)</h1>
+          </header>
+          <section class="text">
+			<p><code>boolean(x)</code> is used to convert a non-Boolean value to a Boolean value (true or false).</p>
+             <ul>
+              <li onclick="return update_boolean(this, undefined);">Click Here to Try Some</li>
+              <li onclick="return update_boolean(this, null);">Click Here to Try Some</li>
+              <li onclick="return update_boolean(this, false, true);">Click Here to Try Some</li>
+              <li onclick="return update_boolean(this, 0, NaN, 5);">Click Here to Try Some</li>
+              <li onclick="return update_boolean(this, '', 'blah');">Click Here to Try Some</li>
+              <li onclick="return update_boolean(this, {}, {'stuff' : 'more'});">Click Here to Try Some</li>
+              <li onclick="return update_boolean(this, [], [1,2,3]);">Click Here to Try Some</li>
+              <li onclick="return update_boolean(this, function() {});">Click Here to Try Some</li>
+            </ul>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>Type Conversions &#8212; Boolean(x)</h1>
+          </header>
+          <section class="text">
+  			<p><code>boolean(x)</code> is used to convert a non-Boolean value to a Boolean value (true or false).</p>
+          <ul class="two-cols">
+              <li><code>boolean(undefined)</code></li>
+              <li><code>boolean(null)</code></li>
+              <li><code>boolean(boolean)</code></li>
+              <li><code>boolean(number)</code></li>
+              <li><code>boolean(string)</code></li>
+              <li><code>boolean(object)</code></li>
+              <li><code>boolean(array)</code></li>
+              <li><code>boolean(function)</code></li>
+              <li>false</li>
+              <li>false</li>
+              <li>&#8212;</li>
+              <li>0 or NaN -> false, else true</li>
+              <li>&quot;&quot; -> false, else true</li>
+              <li>true</li>
+              <li>true</li>
+              <li>true</li>
+            </ul>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>Type Conversions &#8212; Number(x)</h1>
+          </header>
+          <section class="text left">
+            <ul>
+              <li>undefined</li>
+              <li>null</li>
+              <li>boolean</li>
+              <li>number</li>
+              <li>string</li>
+              <li>object</li>
+              <li>array</li>
+              <li>function</li>
+            </ul>
+          </section>
+          <section class="text">
+            <ul>
+              <li onclick="return update_number(this, undefined);">Click Here to Try Some</li>
+              <li onclick="return update_number(this, null);">Click Here to Try Some</li>
+              <li onclick="return update_number(this, false, true);">Click Here to Try Some</li>
+              <li onclick="return update_number(this, 0, NaN, 5);">Click Here to Try Some</li>
+              <li onclick="return update_number(this, '', 'blah');">Click Here to Try Some</li>
+              <li onclick="return update_number(this, {}, {'stuff' : 'more'});">Click Here to Try Some</li>
+              <li onclick="return update_number(this, [], [1,2,3]);">Click Here to Try Some</li>
+              <li onclick="return update_number(this, function() {});">Click Here to Try Some</li>
+            </ul>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>Type Conversions &#8212; Number(x)</h1>
+          </header>
+          <section class="text left">
+            <ul>
+              <li>undefined</li>
+              <li>null</li>
+              <li>boolean</li>
+              <li>number</li>
+              <li>string</li>
+              <li>object</li>
+              <li>array</li>
+              <li>function</li>
+            </ul>
+          </section>
+          <section class="text right">
+            <ul>
+              <li>NaN</li>
+              <li>0</li>
+              <li>false -> 0, true -> 1</li>
+              <li>&#8212;</li>
+              <li>&quot;&quot; -> 0, number or NaN</li>
+              <li>NaN</li>
+              <li>[] -> 0, [number] -> number, NaN</li>
+              <li>NaN</li>
+            </ul>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>Type Conversions &#8212; String(x)</h1>
+          </header>
+          <section class="text left">
+            <ul>
+              <li>undefined</li>
+              <li>null</li>
+              <li>boolean</li>
+              <li>number</li>
+              <li>string</li>
+              <li>object</li>
+              <li>array</li>
+              <li>function</li>
+            </ul>
+          </section>
+          <section class="text">
+            <ul>
+              <li onclick="return update_string(this, undefined);">Click Here to Try Some</li>
+              <li onclick="return update_string(this, null);">Click Here to Try Some</li>
+              <li onclick="return update_string(this, false, true);">Click Here to Try Some</li>
+              <li onclick="return update_string(this, 0, NaN, 5);">Click Here to Try Some</li>
+              <li onclick="return update_string(this, '', 'blah');">Click Here to Try Some</li>
+              <li onclick="return update_string(this, {}, {'stuff' : 'more'});">Click Here to Try Some</li>
+              <li onclick="return update_string(this, [], [1,2,3]);">Click Here to Try Some</li>
+              <li onclick="return update_string(this, function() {});">Click Here to Try Some</li>
+            </ul>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>Type Conversions &#8212; String(x)</h1>
+          </header>
+          <section class="text left">
+            <ul>
+              <li>undefined</li>
+              <li>null</li>
+              <li>boolean</li>
+              <li>number</li>
+              <li>string</li>
+              <li>object</li>
+              <li>array</li>
+              <li>function</li>
+            </ul>
+          </section>
+          <section class="text right">
+            <ul>
+              <li>&quot;undefined&quot;</li>
+              <li>&quot;null&quot;</li>
+              <li>&quot;false&quot; or &quot;true&quot;</li>
+              <li>sprintf("%g", x)</li>
+              <li>&#8212;</li>
+              <li>&quot;[object Object]&quot;</li>
+              <li>&quot;,&quot;.join(x)</li>
+              <li>&quot;function (...) {...}&quot;</li>
+            </ul>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>Quick Test &#8212; Type Conversions</h1>
+          </header>
+          <section class="text">
+            <div>Need Examples</div>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>Operators</h1>
+          </header>
+          <section class="text muchSmallerCode">
+            <h3>Math Operator Precedence</h3>
+            <pre class="brush: js; toolbar: false">
+            ( ) // highest
+            ++ --
+            ! ~ + - (unary)
+            * / %
+            + -
+            &lt;&lt; &gt;&gt; &gt;&gt;&gt;
+            &lt; &lt;= &gt; &gt;=
+            == != === !== 
+            &amp;
+            ^
+            |
+            &amp;&amp;
+            ||
+            ?:
+            = += -= *= /= %= &lt;&lt;= &gt;&gt;= &gt;&gt;&gt;= &amp;= ^= |= // lowest
+            </pre>
+            <p><a href="https://developer.mozilla.org/en/JavaScript/Reference/Operators/Operator_Precedence">All Scopes</a></p>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>Operators</h1>
+          </header>
+          <section class="text smallerCode">
+            <br/>
+            <pre class="brush: js; toolbar: false">
+            * / % (binary)
+            </pre>
+            <ul>
+              <li>coerce both <code class="js keyword">Number</code> and operate</li>
+            </ul>
+            <pre class="brush: js; toolbar: false">
+            + (binary)
+            </pre>
+            <ul>
+              <li>Add two <code class="js keyword">Number</code>s together</li>
+              <li>If one side is a <code class="js keyword">String</code>, convert other to a <code class="js keyword">String</code> and concatenate</li>
+            </ul>
+            <pre class="brush: js; toolbar: false">
+            - (unary)
+            </pre>
+            <ul>
+              <li>coerce to <code class="js keyword">Number</code> and negate</li>
+            </ul>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>Operators</h1>
+          </header>
+          <section class="text smallerCode">
+            <br/>
+            <pre class="brush: js; toolbar: false">
+              = (binary)
+              // Assignment
+              var a = "whatever dude";
+            </pre>
+            
+            <pre class="brush: js; toolbar: false;">
+              == (binary)
+              // Equality
+              if(a == 5) {...}
+              if("1" == 1) {...} // true
+            </pre>
+            
+            <pre class="brush: js; toolbar: false;">
+              === (binary)
+              // Equality without type coercion
+              if(a === 5) {...}
+              if("1" === 1) {...} // false
+            </pre>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>Quick Test &#8212; Operators</h1>
+          </header>
+          <section class="text">
+            <div>Need Examples</div>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>Reserved Words</h1>
+          </header>
+          <section class="text muchSmallerCode">
+            <ul>
+              <li><code class="js keyword">var</code></li>
+              <li><code class="js keyword">void</code></li>
+              <li><code class="js keyword">try</code></li>
+              <li><code class="js keyword">catch</code></li>
+              <li><code class="js keyword">switch</code></li>
+              <li><code class="js keyword">if</code></li>
+              <li><code class="js keyword">goto</code></li>
+              <li><code class="js keyword">package</code></li>
+              <li><code class="js keyword">yield</code></li>
+              <li><code class="js keyword">import</code></li>
+              <li><code class="js keyword">static</code></li>
+            </ul>
+            <div>more at <a href="https://developer.mozilla.org/en/JavaScript/Reference/Reserved_Words">https://developer.mozilla.org/en/JavaScript/Reference/Reserved_Words</a>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>Syntax</h1>
+          </header>
+          <section class="text smallerCode">
+            <br/>
+            <dl>
+              <dt>Semi-colons</dt>
+              <dd>Required at the end of each statement</dd>
+              <dd>Extensively used in minified code</dd>
+            </dl>
+            <div>Parentheses required around conditions in <code class="js keyword">for</code> and <code class="js keyword">if</code> statements</div>
+            <pre class="brush: js; toolbar: false;">
+              for(var i=0; i&lt;len; i++) { ... }
+            </pre>
+            
+            <pre class="brush: js; toolbar: false;">
+              if(conditions) {
+                ...
+              } else if(conditions) {
+                ...
+              } else {
+                ...
+              }
+            </pre>
+            <div>Use braces in <code class="js keyword">if</code>, <code class="js keyword">else</code>, <code class="js keyword">for</code>, and <code class="js keyword">switch</code> statements</div>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>Control Flow &#8212; if</h1>
+          </header>
+          <section class="text smallerCode">
+            <br/>
+            <pre class="brush: js; toolbar: false;">
+              if (1 + 2 > 5) {
+                ...
+              }
+            </pre>
+            
+            <pre class="brush: js; toolbar: false;">
+              if (alpha == String(beta)) {
+                ...
+              } else if (delta &lt; gamma) {
+                ...
+              } else {
+                ...
+              }
+            </pre>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>Control Flow &#8212; switch</h1>
+          </header>
+          <section class="text smallerCode">
+            <br/>
+            <pre class="brush: js; toolbar: false;">
+              switch (c) { 
+              case "alpha":
+              case "beta":
+                ...        // fall-through to gamma case
+              case "gamma":
+                ...
+                break;
+              case 42:  // can mix types in case statement
+                ...
+                break;
+              default:
+                ...
+                break;
+              }
+            </pre>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>Control Flow &#8212; Loops</h1>
+          </header>
+          <section class="text smallerCode">
+            <br/>
+            <pre class="brush: js; toolbar: false;">
+              for(var i=0, len=arr.length; i&lt;len; i++) {
+                ...
+              }
+            </pre>
+            
+            <pre class="brush: js; toolbar: false;">
+              for(var key in obj) {
+                /* object or array traversal */
+              }
+            </pre>
+            
+            <pre class="brush: js; toolbar: false;">
+              while(i &lt; 5) {
+                ...
+              }
+            </pre>
+            
+            <pre class="brush: js; toolbar: false;">
+              do {
+                ...
+              } while(i &gt; 5);
+            </pre>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>Quick Test &#8212; Control Flow</h1>
+          </header>
+          <section class="text">
+            <div>Need Examples</div>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>Functions</h1>
+          </header>
+          <section class="text smallerCode">
+            <ul>
+              <li>Multiple Input</li>
+              <li>Single Output</li>
+            </ul>
+            <pre class="brush: js; toolbar: false;">
+              function calculateSlope(x1, y1, x2, y2) {
+                return (y2 - y1) / (x2 - x1);
+              }
+              function calculateOffset(x1, y1, m) {
+                return y1 - m * x1;
+              }
+              function getNextYCoordinate(x1, y1, x2, y2, x3) {
+                var m = calculateSlope(x1, y1, x2, y2);
+                return m * x3 + calculateOffset(x1, y1, m);
+              }
+            </pre>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>Types &#8212; Argument Passing Reference/Value</h1>
+          </header>
+          <br/>
+          <br/>
+          <section class="text">
+            <ul>
+              <li>undefined</li>
+              <li>null</li>
+              <li>boolean</li>
+              <li>number</li>
+              <li>string</li>
+              <li>object</li>
+              <li>array</li>
+              <li>function</li>
+            </ul>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>Types &#8212; Argument Passing Reference/Value</h1>
+          </header>
+          <br/>
+          <br/>
+          <section class="text left">
+            <ul>
+              <li>undefined</li>
+              <li>null</li>
+              <li>boolean</li>
+              <li>number</li>
+              <li>string</li>
+              <li>object</li>
+              <li>array</li>
+              <li>function</li>
+            </ul>
+          </section>
+          <section class="text right">
+            <ul>
+              <li>value</li>
+              <li>value</li>
+              <li>value</li>
+              <li>value</li>
+              <li>value</li>
+              <li>reference</li>
+              <li>reference</li>
+              <li>reference</li>
+            </ul>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>Debugging</h1>
+          </header>
+          <section class="text">
+            <br/>
+            <dl>
+              <dt>console.log()</dt>
+              <dd>In Chrome/Safari always</dd>
+              <dd>In Firefox when Firebug Console enabled</dd>
+              <dd>In IE only with certain frameworks :-(</dd>
+              <dd>Pass any type and see a string representation of its value</dd>
+            </dl>
+            <br/>
+            <dl>
+              <dt>Breakpoints</dt>
+              <dd>Available in Firebug</dd>
+              <dd>Available in Chrome/Safari in Developer Tools</dd>
+              <dd>In IE 8 and above</dd>
+            </dl>
+            <br/>
+            <dl>
+              <dt>Clear Cache</dt>
+              <dd>Refresh in Firebug/Chrome/Safari</dd>
+              <dd>IE 8 caches even when you tell it not to in Debug mode</dd>
+            </dl>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <section class="middle landing">
+            <h1>console.log()</h1>
+            <h3>Lab</h3>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>Testing</h1>
+          </header>
+          <section class="text muchSmallerCode">
+            <dl>
+              <dt>Why Test?</dt>
+              <dd>Code works before committing</dd>
+              <dd>Code works after dependencies changed</dd>
+              <dd>Code works after refactoring</dd>
+              <dd>No one likes seeing an empty page</dd>
+            </dl>
+            <dl>
+              <dt>Types of Testing</dt>
+              <dd>Smoke Testing &#8212; nothing blows up</dd>
+              <dd>Unit Testing &#8212; function works</dd>
+              <dd>Integration Testing &#8212; service interoperability works</dd>
+            </dl>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>JSUnit</h1>
+          </header>
+          <section class="text muchSmallerCode">
+            <br/>
+            <pre class="brush: html; toolbar: false;">
+              &lt;html&gt;
+                &lt;head&gt;
+                  &lt;title&gt;Test Page for isValidZipCode(proposedZipCode)&lt;/title&gt;
+                  &lt;script language="javascript" src="jsUnitCore.js"&gt;&lt;/script&gt;
+                  &lt;!-- script including isValidZipCode() below --&gt;
+                  &lt;script language="javascript" src="myJsScripts.js"&gt;&lt;/script&gt;
+                &lt;/head&gt;
+                &lt;body&gt;
+                  &lt;script language="text/javascript"&gt;
+                    function testValidZipCode() {
+                      assert(isValidZipCode("90210"));
+                      assert(isValidZipCode("94114"));
+                    }
+                    function testInvalidZipCode() {
+                      assert(!isValidZipCode("foo"));
+                      assert(!isValidZipCode("9021"));
+                    }
+                  &lt;/script&gt;
+                &lt;/body&gt;
+              &lt;/html&gt;              
+            </pre>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle landing">
+            <h1>Sorting</h1>
+            <h3>Lab</h3>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>Scoping</h1>
+          </header>
+          <section class="text muchSmallerCode">
+            <br/>
+            <div>Variables are created on the fly:</div>
+            <pre class="brush: js; toolbar: false;">
+              b = 1 + 2
+            </pre>
+            <br/>
+            <div>Using var creates the variable at the innermost scope:</div>
+            <pre class="brush: js; toolbar: false;">
+              var b = 1 + 2;
+              var a = 200;
+              if(typeof a != "undefined") {
+                var b = String(a);
+                assertEqual(typeof b, "string");
+                assertEqual(b, String(b));
+                assertEqual(b, b.toString());
+              }
+              // b == "200" out here
+            </pre>
+            <br/>
+            <div>Braces <strong>DO NOT</strong> create a new inner scope</div>
+            <div><strong>ONLY</strong> functions create a new inner scope</div>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>Scoping</h1>
+          </header>
+          <section class="text smallerCode">
+            <br/>
+            <div>In browser, all variables in the global scope are on the window object</div>
+            <pre class="brush: js; toolbar: false;">
+              var b = 1 + 2;
+              assertEqual(window.b, 3);
+              
+              function mytest() {
+                if(true) {
+                  var a = "str";
+                  assertUndefined(window.a);
+                }
+              }
+              mytest();
+              assertUndefined(window.a);
+            </pre>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>Quick Test &#8212; Scoping</h1>
+          </header>
+          <section class="text">
+            <div>Need Examples</div>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>DOM (Document Object Model)</h1>
+          </header>
+          <section class="text">
+            <br/>
+            <dl>
+              <dt>document</dt>
+              <dd>Top-most element of a DOM, tree-structured</dd>
+              <dd>Contains the root node where everything starts</dd>
+              <dd>Used to create other elements</dd>
+              <dd>Used to scan for elements</dd>
+            </dl>
+            <br/>
+            <dl>
+              <dt>Node</dt>
+              <dd>Text Node, Comment Node, Element Node, Attribute Node</dd>
+            </dl>
+            <br/>
+            <dl>
+              <dt>Element</dt>
+              <dd>Created by every opening tag in an HTML document</dd>
+              <dd>May contain other elements as child nodes</dd>
+              <dd>May contain text nodes as child nodes</dd>
+              <dd>May have sibling elements</dd>
+            </dl>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>DOM &#8212; document</h1>
+          </header>
+          <section class="text muchMuchSmallerCode">
+            <pre class="brush: js; toolbar: false;">document.getElementById("id-tag-value")</pre>
+            <div>returns first Element with specified id attribute otherwise null</div>
+            <br/>
+            <pre class="brush: js; toolbar: false;">document.getElementsByClassName("class-tag-value")</pre>
+            <div>returns list of Element with specified class attribute</div>
+            <br/>
+            <pre class="brush: js; toolbar: false;">document.createElement("div")</pre>
+            <div>returns a new "div" Element with no children and no parent</div>
+            <br/>
+            <pre class="brush: js; toolbar: false;">document.createTextNode("some HTML unescaped text")</pre>
+            <div>returns a text Node that can be added to an Element</div>
+            <br/>
+            <pre class="brush: js; toolbar: false;">document.createDocumentFragment()</pre>
+            <div>returns a fragment that can be added to a document</div>
+            <p>
+              More at <a href="https://developer.mozilla.org/en/DOM/document">https://developer.mozilla.org/en/DOM/document</a>
+            </p>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>DOM &#8212; Node Properties</h1>
+          </header>
+          <section class="text">
+            <br/>
+            <dl>
+              <dt>parentNode</dt>
+              <dd>The Node this Node is under in the tree</dd>
+            </dl>
+            <dl>
+              <dt>childNodes[]</dt>
+              <dd>Access individual child nodes, immutable</dd>
+            </dl>
+            <dl>
+              <dt>firstChild</dt>
+              <dd>first child Node or null if no children</dd>
+            </dl>
+            <dl>
+              <dt>lastChild</dt>
+              <dd>last child Node or null if no children</dd>
+            </dl>
+            <dl>
+              <dt>nextSibling</dt>
+              <dd>next Node under the same parentNode or null if last</dd>
+            </dl>
+            <dl>
+              <dt>previousSibling</dt>
+              <dd>previous Node under the same parentNode or null if first</dd>
+            </dl>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>DOM &#8212; Node Functions
+          </header>
+          <section class="text">
+            <br/>
+            <dl>
+              <dt>appendChild(childNode)</dt>
+              <dd>adds aNode as a child</dd>
+            </dl>
+            <br/>
+            <dl>
+              <dt>removeChild(aNode)</dt>
+              <dd>removes aNode if it is a direct child</dd>
+            </dl>
+            <br/>
+            <dl>
+              <dt>insertBefore(aNode, beforeNode)</dt>
+              <dd>inserts aNode as a child and placed before beforeNode if beforeNode is a child of this Node, otherwise, append aNode to the end</dd>
+            </dl>
+            <p>
+              More at <a href="https://developer.mozilla.org/en/DOM/node">https://developer.mozilla.org/en/DOM/node</a>
+            </p>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>DOM &#8212; Element Properties</h1>
+          </header>
+          <section class="text">
+            <br/>
+            <dl>
+              <dt>attributes</dt>
+              <dd>list of attribute Nodes for this Element</dd>
+            </dl>
+            <dl>
+              <dt>tagName</dt>
+              <dd>tag for Element</dd>
+            </dl>
+            <dl>
+              <dt>textContent</dt>
+              <dd>all text in Element through leaf nodes</dd>
+            </dl>
+            <dl>
+              <dt>innerHTML</dt>
+              <dd>all child Elements through leaf nodes as HTML text</dd>
+            </dl>
+            <dl>
+              <dt>className</dt>
+              <dd>string containing "class" attribute for this Element</dd>
+            </dl>
+            <dl>
+              <dt>style</dt>
+              <dd>an object representing the style for this Element</dd>
+            </dl>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>DOM &#8212; Element Functions</h1>
+          </header>
+          <section class="text">
+            <br/>
+            <dl>
+              <dt>getAttribute(attributeName)</dt>
+              <dd>Returns attribute value as string or null if not found</dd>
+            </dl>
+            <br/>
+            <dl>
+              <dt>setAttribute(attributeName, attributeValue)</dt>
+              <dd>Sets the attribute value as a string for attributeName</dd>
+            </dl>
+            <br/>
+            <dl>
+              <dt>addEventListener(type, handler, useCapture)</dt>
+              <dd>Adds an event listener to this element for the specified event type</dd>
+            </dl>
+            <br/>
+            <dl>
+              <dt>removeEventListener(type, handler, useCapture)</dt>
+              <dd>Removes an event listener from this element for the specified event type</dd>
+            </dl>
+            <p>
+              More at <a href="https://developer.mozilla.org/en/DOM/element">https://developer.mozilla.org/en/DOM/element</a>
+            </p>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <header>
+            <h1>Quick Test &#8212; DOM Basics</h1>
+          </header>
+          <section class="text">
+            <div>Need Examples</div>
+          </section>
+        </div>
+        
+        <div class="slide">
+          <section class="middle landing">
+            <h1>Advanced Sorting</h1>
+            <h3>Demo</h3>
+          </section>
+        </div>
+
+      <!-- slides -->
+
+    </div> <!-- presentation -->
+    <!--[if lt IE 9]>
+    <script
+    src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">
+    </script>
+    <script>CFInstall.check({ mode: "overlay" });</script>
+    <![endif]-->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+    <script type="text/javascript" src="js/slideshow.js"></script>
+    <script type="text/javascript">
+      function getInnerText(elem) {
+        if(typeof elem.innerText == "undefined") {
+          return elem.textContent;
+        }
+        return elem.innerText;
+      }
+      function setInnerText(elem, value) {
+        if(typeof elem.innerText == "undefined") {
+          elem.textContent = value;
+        } else {
+          elem.innerText = value;
+        }
+      }
+      function stringify(value) {
+        if(typeof value == "string") {
+          return "\"" + value + "\"";
+        }
+        if(typeof value == "object") {
+          return JSON.stringify(value);
+        }
+        return String(value);
+      }
+      function update_typeof(elem, value) {
+        if(getInnerText(elem).substring(0, 6) == "typeof") {
+          var s = stringify(typeof value);
+        
+          for(var i=2; i<arguments.length; i++) {
+            s += ", " + stringify(typeof arguments[i]);
+          }
+        } else {
+          var s = "typeof " + stringify(value)
+          for(var i=2; i<arguments.length; i++) {
+            s += ", typeof " + stringify(arguments[i]);
+          }
+        }
+        setInnerText(elem, s);
+      }
+      function update_boolean(elem, value) {
+        if(getInnerText(elem).substring(0, 7) == "Boolean") {
+          var s = stringify(Boolean(value));
+        
+          for(var i=2; i<arguments.length; i++) {
+            s += ", " + stringify(Boolean(arguments[i]));
+          }
+        } else {
+          var s = "Boolean(" + stringify(value) + ")"
+          for(var i=2; i<arguments.length; i++) {
+            s += ", Boolean(" + stringify(arguments[i]) + ")";
+          }
+        }
+        setInnerText(elem, s);
+      }
+      function update_number(elem, value) {
+        if(getInnerText(elem).substring(0, 6) == "Number") {
+          var s = stringify(Number(value));
+        
+          for(var i=2; i<arguments.length; i++) {
+            s += ", " + stringify(Number(arguments[i]));
+          }
+        } else {
+          var s = "Number(" + stringify(value) + ")"
+          for(var i=2; i<arguments.length; i++) {
+            s += ", Number(" + stringify(arguments[i]) + ")";
+          }
+        }
+        setInnerText(elem, s);
+      }
+      function update_string(elem, value) {
+        if(getInnerText(elem).substring(0, 6) == "String") {
+          var s = stringify(String(value));
+        
+          for(var i=2; i<arguments.length; i++) {
+            s += ", " + stringify(String(arguments[i]));
+          }
+        } else {
+          var s = "String(" + stringify(value) + ")"
+          for(var i=2; i<arguments.length; i++) {
+            s += ", String(" + stringify(arguments[i]) + ")";
+          }
+        }
+        setInnerText(elem, s);
+      }
+    </script>
+  </body>
+</html>
