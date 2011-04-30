@@ -24,26 +24,22 @@ table {
   font-weight: bold;
 }
 .article {
-  padding: 1em;
+  border-bottom: 1px black solid;
+}
+
+.article-description {
+  padding-bottom: 1em;
+  padding-left: 1em;
+  padding-right: 1em;
 }
 
 .article-title {
-  font-size: large;
+  padding: 0.25em;
   font-weight: bold;
-  color: black;
-}
-
-.article-title a {
-  color: gray;
-  text-decoration: none;
 }
 
 .article-title a:hover {
   text-decoration: underline;
-}
-
-.article-description {
-  pa
 }
 
 .hidden {

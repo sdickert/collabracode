@@ -13,11 +13,9 @@ var riverCallback = {
       var items = obj.rss.channel.item;
       for(var i=0, itemSize=items.length; i<itemSize; i++) {
         var item = items[i];
-        var anchor = document.createElement("a");
-        anchor.innerHTML = item.title;
-        anchor.href = item.link;
         var atitle = document.createElement("div");
         atitle.className = "article-title";
+        atitle.innerHTML = item.title;
         var adesc = document.createElement("div");
         adesc.className = "article-description hidden";
         adesc.id = "article-description-" + i;
@@ -27,11 +25,16 @@ var riverCallback = {
         var article = document.createElement("div");
         article.className = "article";
         article.appendChild(atitle);
-        var expandContract = document.createElement("span");
-        setInnerText(expandContract, "+/-");
-        addEvent(expandContract, "click", toggleVisibilityWrapper(adesc.id));
-        atitle.appendChild(expandContract);
-        atitle.appendChild(anchor);
+        addEvent(atitle, "click", toggleVisibilityWrapper(adesc.id));
+        
+        var anchor = document.createElement("a");
+        anchor.appendChild(document.createTextNode("permalink"));
+        anchor.href = item.link;
+        anchor.setAttribute("target", "_blank");
+        var permalink = document.createElement("div");
+        permalink.appendChild(anchor);
+        adesc.appendChild(permalink);
+        
         article.appendChild(atitle);
         article.appendChild(adesc);
         river.appendChild(article);
