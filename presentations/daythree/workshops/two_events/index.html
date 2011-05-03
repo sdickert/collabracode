@@ -1,0 +1,46 @@
+<!DOCTYPE html> 
+<html> 
+    <head> 
+        <title>Day 2 - Advanced Events</title>
+        <style type="text/css" media="screen">
+            #comment_form { width: 400px; margin: 10px auto; }
+            #comment { height: 70px;}
+        </style>
+    </head> 
+    <body> 
+        <div id="outer-wrapping">
+            <h1>Day 2 - Advanced Events</h1>
+            <p>
+                Use this form and add the following functionality:
+            </p>
+            <ol>
+                <li>Validate all fields to be not blank.</li>
+                <li>Validate email address</li>
+                <li>Allow form to be cleared</li>
+                <li>Enforce a minimum comment length</li>
+            </ol>
+            <form action="#" method="post" id="comment_form">
+                <fieldset>
+                    <legend>Add Comment</legend>
+                    
+                    <div style="float: right;">
+                        <label for="comment">Comment:</label><br />
+                        <textarea name="comment" id="comment"></textarea><br />
+                    </div>
+                    
+                    <label for="name">Name:</label><br />
+                    <input type="text" name="name" id="name" /><br />
+                    <br />
+                    
+                    <label for="email">Email Address:</label><br />
+                    <input type="text" name="email" id="name" /><br />
+                    <br />
+                    
+                    <div style="clear: both"></div>
+                    <button id="submit" type="button">Submit</button>&nbsp;&nbsp;<a id="clear" href="#">clear</a>
+                </fieldset>
+            </form>
+            <script type="text/javascript" src="http://code.jquery.com/jquery-1.5.2.min.js"></script>
+        </div>
+    </body> 
+</html>

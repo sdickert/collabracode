@@ -1,0 +1,83 @@
+<!DOCTYPE html> 
+<html> 
+    <head> 
+        <title>Day 2 - Advanced Events</title>
+        <style type="text/css" media="screen">
+            #comment_form { width: 400px; margin: 10px auto; }
+            #comment { height: 70px;}
+            #length_ticker { color: #666; font-size: 0.7em; margin-top: -2px; text-align: right; }
+            .hide { display: none; }
+            .message 
+            {
+                padding: 10px 15px 10px 40px;
+                margin: 10px 0;
+                font-weight: bold;
+                overflow: hidden;
+                -webkit-border-radius: 3px;
+                -moz-border-radius: 3px;
+                border-radius: 3px;
+            }
+
+            .message p 
+            {
+                padding: 0;
+                width: 93%;
+                float: left;
+            }
+
+            .message.error 
+            { 
+                border: 1px solid #e9c59b;
+                background: #ffecce;
+                color: #e3302c;
+            }
+
+            .message.success 
+            {
+                border: 1px solid #bfde84;
+                background: #edfbd8;
+                color: #508600;
+            }
+        </style>
+    </head> 
+    <body> 
+        <div id="outer-wrapping">
+            <h1>Day 2 - Advanced Events</h1>
+            <p>
+                Use this form and add the following functionality:
+            </p>
+            <ol>
+                <li>Validate all fields to be not blank.</li>
+                <li>Validate email address</li>
+                <li>Allow form to be cleared</li>
+                <li>Enforce a minimum comment length</li>
+            </ol>
+            <form action="#" method="post" id="comment_form">
+                <fieldset>
+                    <div class="error message hide" id="error">Please correct validation errors.</div>
+                    <div class="success message hide" id="success">Congratulations! Form successfully validated.</div>
+                    <legend>Add Comment</legend>
+                    
+                    <div style="float: right;">
+                        <label for="comment">Comment:</label><br />
+                        <textarea name="comment" id="comment" class="not_null min_length"></textarea><br />
+                        <div id="length_ticker"><span id="char_count">15</span> characters<span id="togo"> to go</span>.</div>
+                    </div>
+                    
+                    <label for="name">Name:</label><br />
+                    <input type="text" name="name" id="name" class="not_null" /><br />
+                    <br />
+                    
+                    <label for="email">Email Address:</label><br />
+                    <input type="text" name="email" id="email" class="not_null email" /><br />
+                    <br />
+                    
+                    <div style="clear: both"></div>
+                    <button id="submit" type="button">Submit</button>&nbsp;&nbsp;<a id="clear" href="#">clear</a>
+                </fieldset>
+            </form>
+            <script type="text/javascript" src="http://code.jquery.com/jquery-1.5.2.min.js"></script>
+            <script type="text/javascript" src="application.js"></script>
+        </div>
+    </body> 
+</html>
