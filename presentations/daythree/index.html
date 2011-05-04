@@ -635,6 +635,35 @@ $("#someId").trigger("myEvent");
             </section>
         </div>
         <div class="slide">
+            <header><h1>Decomposing the example</h1></header>
+            <section class="text muchMuchSmallerCode">
+                <p>First we create a variable to keep track of the current state.</p>
+<pre class="brush: js; toolbar: false">
+var dacTrigger = true;
+</pre>
+                <p>Then we bind an event handler to the button.</p>
+<pre class="brush: js; toolbar: false">
+$("#demoAttributeChange").bind("click", 
+</pre>
+<p>And our logic.</p>
+<pre class="brush: js; toolbar: false">
+function () {
+    if (dacTrigger)
+    {
+        $("li").css({'color' : 'blue', 'font-weight' : 'bold', 'font-size' : '2em'});
+        $(this).text("Quick! Change it back!");
+    }
+    else
+    {
+        $("li").removeAttr('style');
+        $(this).html('Click here to toggle <code>&lt;li&gt;</code> styles.');
+    }
+    dacTrigger = !dacTrigger;
+});
+</pre>
+            </section>
+        </div>
+        <div class="slide">
             <header><h1>Manipulating the DOM</h1></header>
             <section class="text">
                 <ul>
@@ -687,8 +716,9 @@ $("button").removeAttr("disabled");</pre></li>
             <header><h1>Attribute Manipulation</h1></header>
             <section class="text muchSmallerCode">
                 <ul>
-                    <li><pre class="brush: js; toolbar: false">.val()</pre> - Fetch / set the value of the first element matching the selection. Useful for form elements especially.</li>
+                    <li><pre class="brush: js; toolbar: false">.val()</pre> - Fetch / set the value of the first element matching the selection. Only very useful for form elements.</li>
                     <li><pre class="brush: js; toolbar: false">.html()</pre> - Fetch / set the value of the HTML content of the element</li>
+                    <li><pre class="brush: js; toolbar: false">.text()</pre> - Fetch / set the plain text content of the element</li>
                 </ul>
             </section>
         </div>
@@ -757,11 +787,71 @@ $("button").removeAttr("disabled");</pre></li>
                 <ul>
                     <li>Load the current time from a server</li>
                     <li><button id="ajaxDemo" type="button">Get Time</button>&nbsp;<img id="progressSpinner" src="http://i.imgur.com/m24rs.gif" alt="spinner" /></li>
-                    <li id="ajaxDemoResults"></li>
+                    <li><code id="ajaxDemoResults"></code></li>
                 </ul>
             </section>
         </div>
         <div class="slide">
+            <header><h1>AJAX - Example Explained</h1></header>
+            <section class="text muchSmallerCode">
+                <p>HTML Code</p>
+                <pre class="brush: html; toolbar: false">
+&lt;button id=&quot;ajaxDemo&quot; type=&quot;button&quot;&gt;Get Time&lt;/button&gt;&amp;nbsp;
+&lt;img id=&quot;progressSpinner&quot; src=&quot;http://i.imgur.com/m24rs.gif&quot; /&gt;
+&lt;code id=&quot;ajaxDemoResults&quot;&gt;&lt;/code&gt;
+                </pre>
+                <p>JavaScript Variable Declarations</p>
+                <pre class="brush: js; toolbar: false">
+var ps      = $('#progressSpinner'), // Progress spinner image
+    results = $('#ajaxDemoResults'), // Result div
+    ajax    = $('#ajaxDemo'),        // Demo Button
+    url     = 'http://10.natalilabsproject.appspot.com/currentdate/';
+ps.hide();
+results.hide();
+                </pre>
+            </section>
+        </div>
+        <div class="slide">
+            <header><h1>AJAX - Example Explained</h1></header>
+            <section class="text smallerCode">
+                <p>JavaScript Logic</p>
+                <pre class="brush: js; toolbar: false">
+ajax.bind('click', function () {  // When clicked
+     // Fade in loading indicator
+    ps.fadeIn(200, function () { 
+        // Use the .load() shortcut to make an 
+        // AJAX request
+        results.load(url, function () {
+            // Fade out the indicator
+            ps.fadeOut(200, function () {
+                // Fade in the results
+                results.fadeIn(200);
+            });
+        });
+    });
+});
+                </pre>
+            </section>
+        </div>
+        <div class="slide">
+            <header><h1>Workshop &mdash; AJAX Requests</h1></header>
+            <section class="text">
+                <p>Rebuild the <em>River of News</em> using jQuery for events, selection, and AJAX calls.</p>
+            </section>
+        </div>
+        <!-- <div class="slide">
+            <header><h1>Homework &mdash; Public API's</h1></header>
+            <section class="text">
+                <ul>
+                    <li>Originally we planned on having companies come in and present projects.</li>
+                    <li></li>
+                    <li>We haven't been very successful.</li>
+                    <li></li>
+                    <li>In the process of transistioning to more publicly facing projects and ideas, we are requesting that you find ten or more publically available API's. If it requires money ($) or not public, include it as well. We may be able to contact the company and still make use of it.</li>
+                </ul>
+            </section>
+        </div> -->
+        <!-- <div class="slide">
             <header><h1>Workshop &mdash; AJAXifying forms</h1></header>
             <section class="text">
                 <p>
@@ -775,7 +865,7 @@ $("button").removeAttr("disabled");</pre></li>
                     <li>Clear the form on submission</li>
                 </ul>
             </section>
-        </div>
+        </div> -->
         <div class="slide">
           <div class="bg">
             <section class="middle landing">
@@ -805,23 +895,14 @@ $("button").removeAttr("disabled");</pre></li>
                     <dd>
                         Require.js is a module loading framework for JavaScript that allows you to compartamentalize your code with minimal hassle and overhead.
                     </dd>
+                    <dt><a href="http://documentcloud.github.com/underscore/">Underscore.js</a></dt>
+                    <dd>
+                        Underscore is a utility belt library for JavaScript that allows you to use advanced features and functionality present in core classes (Array, Object, Functions) in future versions of JavaScript.
+                    </dd>
                 </dl>
             </section>
         </div>
-        <div class="slide">
-            <header>
-                <h1>Code Organization</h1>
-            </header>
-            <section class="text">
-                <ul>
-                    <li><a href="http://documentcloud.github.com/underscore/">Underscore.js</a> is a utility belt library for JavaScript that adds functionality to existing core classes (Array, Object, Collections, and Functions)</li>
-                    <li><a href="http://requirejs.org/">RequireJS</a></li>
-                    <li>Patterns</li>
-                    <li>OOP</li>
-                </ul>
-            </section>
-        </div>
-        <div class="slide">
+        <!-- <div class="slide">
             <header>
                 <h1>Performance</h1>
             </header>
@@ -832,7 +913,7 @@ $("button").removeAttr("disabled");</pre></li>
                     <li>JS Performance</li>
                 </ul>
             </section>
-        </div>
+        </div> -->
         <div class="slide">
             <header>
                 <h1>Avoiding High Level Code</h1>
