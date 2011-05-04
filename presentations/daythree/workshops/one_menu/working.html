@@ -1,0 +1,72 @@
+<!DOCTYPE html> 
+<html> 
+    <head> 
+        <title>Day 2 - Advanced Events</title>
+        <style type="text/css" media="screen">
+            li:hover { background: #D9E4FF; }
+        </style>
+    </head> 
+    <body> 
+        <div id="outer-wrapping">
+            <h1>Day 1 - Event Driven Menu</h1>
+            <ul>
+                <li>Clients
+                    <ul>
+                        <li>Google</li>
+                        <li>Apple</li>
+                        <li>Facebook</li>
+                    </ul>
+                </li>
+                <li>Products
+                </li>
+                <li>Services
+                    <ul>
+                        <li>JavaScript
+                            <ul>
+                                <li>jQuery</li>
+                                <li>Node.js</li>
+                                <li>MongoDB</li>
+                            </ul>
+                        </li>
+                        <li>PHP
+                            <ul>
+                                <li>CodeIgniter</li>
+                            </ul>
+                        </li>
+                        <li>Java
+                            <ul>
+                                <li>Grails</li>
+                                <li>Spring</li>
+                            </ul>
+                        </li>
+                    </ul>                    
+                </li>
+                <li>About
+                    <ul>
+                        <li>Team</li>
+                        <li>Contact</li>
+                    </ul>
+                </li>
+            </ul>
+            <script type="text/javascript" src="http://code.jquery.com/jquery-1.5.2.min.js"></script>
+            <script type="text/javascript" charset="utf-8">
+                $(function () {
+                    // Hide all sub lists
+                    $('li ul').hide();
+                    
+                    // Use the .hover shortcut
+                    $('li').hover(
+                        // Executed on mouseon
+                        function () {
+                            $(this).children('ul').show();
+                        }, 
+                        
+                        // Executed on mouseoff
+                        function () {
+                        $(this).children('ul').hide();
+                    });
+                });
+            </script>
+        </div>
+    </body> 
+</html>
