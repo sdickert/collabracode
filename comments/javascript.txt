@@ -1,0 +1,57 @@
+Git
+--------------------------------------------
+Explain Git using diagram Josh used to explain to Sanford
+Show instructions to setup Git in that manner
+
+
+HelloWorld and syntax/control flow
+--------------------------------------------
+Discuss Sorting Lab First
+After HelloWorld examples, show console.log()
+After console.log(), give 2-3 tightly-packed examples showing all the syntax
+After each example, give tutorial where the team has to individually fix all syntax issues and if standard algorithm, also fix logic issues
+Skip slides discussing all the syntax in presentation, mark as reference
+Round out best practices for syntax and control flow in one slide
+After first quick test, make sure they are committing to their repository and pushing out to their github repo
+Second example should include scoping, ensure there is a slide on that which is not skipped.
+
+Types
+--------------------------------------------
+Discuss types and type coercion after examples
+Have them do a couple in console.log() and mention the slides containing all the info as reference material
+
+Short Labs rather than Quick Test
+--------------------------------------------
+For testing, give them a tutorial where some of the logic is incorrect and they have to write the unit tests and fix the logic
+
+Sorting Lab
+--------------------------------------------
+Break up sorting into checkpoints
+- Part 1 should be algorithm
+  - Breakdown part 1 into smaller steps
+  - Mention one iteration of outer loop in slides
+- Part 2 should be testing
+Create Lab for using the DOM
+
+Post-Lab
+--------------------------------------------
+Add section about what mistakes we kept seeing in labs from day 1
+
+Data Structures
+--------------------------------------------
+Mark Data Structures slides as reference material and briefly skim over it
+
+River of News Lab
+--------------------------------------------
+Setup checkpoints during River of News Lab according to Workflow slide, ensure team is helping out each other on a per-step basis
+Ensure team is helping out each other on a per-step basis for calculator
+
+OOP
+--------------------------------------------
+Fix c.y = 2 showing c.y = 42 in the picture for "OOP - New Base"
+Add pictures for Calculator and AdvCalculator in OOP slides
+
+Calculator Lab
+--------------------------------------------
+Mention for util.js that you don't specify "on" for event handlers
+Ensure team is helping out each other on a per-step basis for calculator
